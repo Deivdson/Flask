@@ -2,8 +2,7 @@ from flask import Blueprint, request, Response
 from ..models.models import db, User
 import json
 
-app = Blueprint("user", __name__)
-
+app = Blueprint("users", __name__)
 
 @app.route('/')
 def index():

@@ -20,9 +20,10 @@ def view(id):
 @app.route('/add', methods=['POST'])
 def add():    
     lote = Lote(
+        request.form['valor'],
         request.form['endereco'],
         request.form['cep'],
-        request.form['m2'],
+        request.form['tamanho'],
         request.form['user_id']
         )
     db.session.add(lote)
@@ -31,10 +32,11 @@ def add():
 
 @app.route('/edit/<int:id>', methods=['PUT', 'POST'])
 def edit(id):
-    lote = lote.query.get(id)
+    lote = Lote.query.get(id)
+    lote.valor = request.form['valor']
     lote.endereco = request.form['endereco']
     lote.cep =      request.form['cep']
-    lote.m2 =       request.form['m2']
+    lote.tamanho =       request.form['tamanho']
     lote.user_id =  request.form['user_id']
     db.session.commit()
     return Response(response=json.dumps(lote.to_dict()), status=200, content_type="application/json")
