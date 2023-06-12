@@ -34,17 +34,20 @@ class Lote(db.Model):
     cep = db.Column(db.String)
     m2 = db.Column(db.Integer)
     
-
-    def __init__(self, endereco, cep, m2):
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    usuario = db.relationship('User', foreign_keys=user_id)
+    
+    def __init__(self, endereco, cep, m2, user_id):
         self.endereco = endereco
         self.cep = cep
         self.m2 = m2
+        self.user_id = user_id
 
     def __repr__(self):
         return "<Lote %r>" % self.endereco
     
     def to_dict(self, columns=[]):
         if not columns:
-            return {"id":self.id, "endereço":self.endereco, "cep":self.cep, "m²":self.m2}
+            return {"id":self.id, "endereço":self.endereco, "cep":self.cep, "m²":self.m2, "user_id":self.user_id}
         else:
-            return{col:getattr(self, col) for col in columns    }
+            return{col:getattr(self, col) for col in columns}

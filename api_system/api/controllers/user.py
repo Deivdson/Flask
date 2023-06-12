@@ -2,7 +2,7 @@ from flask import Blueprint, request, Response
 from ..models.models import db, User
 import json
 
-app = Blueprint("estudantes", __name__)
+app = Blueprint("user", __name__)
 
 
 @app.route('/')
@@ -27,7 +27,7 @@ def add():
         )
     db.session.add(user)
     db.session.commit()
-    return app.response_class(response=json.dumps({'status':'sucess', 'data':user.to_dict()}), status=200, content_type="application/json")
+    return Response(response=json.dumps({'status':'sucess', 'data':user.to_dict()}), status=200, content_type="application/json")
 
 @app.route('/edit/<int:id>', methods=['PUT', 'POST'])
 def edit(id):
