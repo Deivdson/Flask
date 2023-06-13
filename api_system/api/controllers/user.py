@@ -1,4 +1,4 @@
-from flask import Blueprint, request, Response
+from flask import Blueprint, request, Response, jsonify
 from ..models.models import db, User
 import json
 
@@ -13,20 +13,25 @@ def index():
 @app.route('/view/<int:id>', methods=['GET'])
 def view(id):
     user = User.query.get(id)
-    #row = db.session.execute("select * from users where id = %s" % id).fetchone()
     return Response(response=json.dumps(user.to_dict()), status=200, content_type="application/json")
 
 @app.route('/add', methods=['POST'])
-def add():    
+def add():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+    name = data.get('name')
+    email = data.get('email')
     user = User(
-        request.form['username'],
-        request.form['password'],
-        request.form['name'],
-        request.form['email']
-        )
+        username=username,
+        password=password,
+        name=name,
+        email=email
+    )
     db.session.add(user)
     db.session.commit()
-    return Response(response=json.dumps({'status':'sucess', 'data':user.to_dict()}), status=200, content_type="application/json")
+    return jsonify({'status': 'success', 'message': 'User added successfully'})
+
 
 @app.route('/edit/<int:id>', methods=['PUT', 'POST'])
 def edit(id):

@@ -1,0 +1,7 @@
+.inicio {
+    display: flex;
+    align-items: center;
+    width: 600px;
+    margin: auto;
+    padding-top: 80px;
+}

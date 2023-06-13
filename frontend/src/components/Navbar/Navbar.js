@@ -1,0 +1,21 @@
+import './style.css'
+
+const Navbar = () => {
+
+	return (
+		<nav id='navigation'>
+            <div className='menu'>
+                <h4><a href="/">Início</a></h4>
+                <h4><a href="/">Lotes</a></h4>
+                <h4><a href="/">Casas</a></h4>
+                <div className='login'>
+                    <h4><a href="/login">Entrar</a></h4>
+                    <h4><a href="/signup">Cadastrar</a></h4>
+                </div>
+            </div>
+            
+        </nav>
+	);
+};
+
+export default Navbar;

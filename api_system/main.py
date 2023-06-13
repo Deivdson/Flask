@@ -3,10 +3,11 @@ from api.controllers.lote import app as lote_controller
 from api.controllers.casa import app as casa_controller        
 from api.models.models import db
 from flask import Flask
+from flask_cors import CORS
         
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__)
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
-
 
 app.register_blueprint(user_controller, url_prefix="/user/")
 app.register_blueprint(lote_controller, url_prefix="/lote/")
