@@ -2,7 +2,7 @@
     background-color: #B5443B;
 }
 
-.menu, .login {
+.menu, .login-menu {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -22,7 +22,7 @@ a:hover {
     color: #46295A;
 }
 
-.login {
+.login-menu {
     position: absolute;
     right: 9rem;
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import {Route, BrowserRouter as Router, Routes} from 'react-router-dom';
 
-import Home from './components/Home/Home.js';
-import SignUp from './components/Login/SignUp.js';
-import Login from './components/Login/Login.js';
+import Home from './components/Home/Home';
+import SignUp from './components/Login/SignUp';
+import Login from './components/Login/Login';
 
 const Rotas = () => {
 	return (

@@ -1,0 +1,28 @@
+.signup,
+.login {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5rem;
+}
+
+form  {
+    margin-top: 5rem;
+}
+
+form input {
+    /* superior, direito, inferior e esquerdo */
+    padding: 1.4rem 8rem 1.4rem 1.8rem;
+    border-radius: 30px;
+    border-color: #B5443B;
+    border-style: double;
+}
+
+form button {
+    padding: 1.5rem;
+    border-radius: 30px;
+    background-color: #B5443B;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}

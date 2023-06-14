@@ -9,7 +9,11 @@ const Home = () => {
 			<Navbar />
 			<div className='inicio'>
 				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-				<img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ83rXPj8itnlvgigYEfa___Ci5Ml7UQG2BHg&usqp=CAU' />
+				<img src='https://img.freepik.com/fotos-gratis/uma-casa-azul-com-um-telhado-azul-e-um-fundo-do-ceu_1340-25953.jpg' alt='Casa' />
+			</div>
+			<div className='options'>
+                <h4><a href="/lote">Lotes</a></h4>
+                <h4><a href="/casa">Casas</a></h4>
 			</div>
 		</div>
 	);
