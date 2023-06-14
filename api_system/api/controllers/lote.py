@@ -1,4 +1,4 @@
-from flask import Blueprint, request, Response
+from flask import Blueprint, request, Response, jsonify
 from ..models.models import db, Lote
 import json
 
@@ -18,17 +18,21 @@ def view(id):
     return Response(response=json.dumps(lote.to_dict()), status=200, content_type="application/json")
 
 @app.route('/add', methods=['POST'])
-def add():    
+def add():
+    data = request.get_json()
+    valor = data.get('valor')
+    tamanho = data.get('tamanho')
+    endereco = data.get('endereco')
+    cep = data.get('cep')
     lote = Lote(
-        request.form['valor'],
-        request.form['endereco'],
-        request.form['cep'],
-        request.form['tamanho'],
-        request.form['user_id']
-        )
+        valor=valor,
+        tamanho=tamanho,
+        endereco=endereco,
+        cep=cep
+    )
     db.session.add(lote)
     db.session.commit()
-    return Response(response=json.dumps({'status':'sucess', 'data':lote.to_dict()}), status=200, content_type="application/json")
+    return jsonify({'status': 'success', 'message': 'Lote added successfully'})
 
 @app.route('/edit/<int:id>', methods=['PUT', 'POST'])
 def edit(id):

@@ -12,8 +12,8 @@ const Home = () => {
 				<img src='https://img.freepik.com/fotos-gratis/uma-casa-azul-com-um-telhado-azul-e-um-fundo-do-ceu_1340-25953.jpg' alt='Casa' />
 			</div>
 			<div className='options'>
-                <h4><a href="/lote">Lotes</a></h4>
-                <h4><a href="/casa">Casas</a></h4>
+                <h4><a href="/lotes">Lotes</a></h4>
+                <h4><a href="/casas">Casas</a></h4>
 			</div>
 		</div>
 	);
