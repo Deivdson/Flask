@@ -3,6 +3,7 @@ from ..models.models import db, User, user_share_schema, users_share_schema
 from flask import jsonify
 import json, datetime, jwt
 
+import api
 
 app = Blueprint("auth", __name__)
 
@@ -37,6 +38,6 @@ def login():
         "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
     }
 
-    token = jwt.encode(payload, api.config['SECRET_KEY'])
-    return jsonify({"token":token.decode('utf-8')})
+    token = jwt.encode(payload, api.app.config['SECRET_KEY'])
+    return jsonify({"token":token})
 
