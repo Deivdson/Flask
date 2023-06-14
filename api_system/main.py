@@ -6,6 +6,9 @@ from flask_migrate import Migrate
 from api.models.models import User
 from flask import jsonify
 from api import app, db
+from flask_cors import CORS
+        
+CORS(app)
 
 app.register_blueprint(user_controller, url_prefix="/user/")
 app.register_blueprint(lote_controller, url_prefix="/lote/")

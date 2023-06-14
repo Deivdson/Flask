@@ -1,0 +1,33 @@
+.inicio {
+    display: flex;
+    align-items: center;
+    width: 1000px;
+    margin: auto;
+    padding-top: 80px;
+}
+
+.inicio p,
+.inicio img {
+    margin-right: 50px;
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 130px;
+    margin-top: 10rem;
+}
+
+.options a {
+    background-color: #B5443B;
+    /* superior, direito, inferior e esquerdo */
+    padding: 3rem 8rem 3rem 8rem;
+    border-radius: 30px;
+    font-size: 1.4rem;
+}
+
+.options a:hover {
+    color: #46295A;
+}

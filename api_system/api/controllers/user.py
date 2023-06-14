@@ -16,21 +16,19 @@ def index(current_user):
 @jwt_required
 def view(id, current_user):
     user = User.query.get(id)
-    #row = db.session.execute("select * from users where id = %s" % id).fetchone()
     return Response(response=json.dumps(user.to_dict()), status=200, content_type="application/json")
 
-# @app.route('/add', methods=['POST'])
-# @jwt_required
-# def add(current_user):    
-#     user = User(
-#         request.form['username'],
-#         request.form['password'],
-#         request.form['name'],
-#         request.form['email']
-#         )
-#     db.session.add(user)
-#     db.session.commit()
-#     return Response(response=json.dumps({'status':'sucess', 'data':user.to_dict()}), status=200, content_type="application/json")
+@app.route('/add', methods=['POST'])
+def add():    
+    user = User(
+        request.form['username'],
+        request.form['password'],
+        request.form['name'],
+        request.form['email']
+        )
+    db.session.add(user)
+    db.session.commit()
+    return Response(response=json.dumps({'status':'sucess', 'data':user.to_dict()}), status=200, content_type="application/json")
 
 @app.route('/edit/<int:id>', methods=['PUT', 'POST'])
 @jwt_required
