@@ -5,8 +5,8 @@ from flask import Flask
 from flask_cors import CORS
         
 app = Flask(__name__, template_folder='templates')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 CORS(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 
 app.register_blueprint(user_controller, url_prefix="/user/")
 app.register_blueprint(lote_controller, url_prefix="/lote/")
