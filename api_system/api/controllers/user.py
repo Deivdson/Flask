@@ -1,40 +1,38 @@
-from flask import Blueprint, request, Response, jsonify
+from flask import Blueprint, request, Response
+from ..utils.authenticate import jwt_required
 from ..models.models import db, User
 import json
 
 app = Blueprint("users", __name__)
 
 @app.route('/')
-def index():
+@jwt_required
+def index(current_user):
     users = User.query.all()
     result = [u.to_dict() for u in users]
     return Response(response=json.dumps(result), status=200, content_type="application/json")
 
 @app.route('/view/<int:id>', methods=['GET'])
-def view(id):
+@jwt_required
+def view(id, current_user):
     user = User.query.get(id)
     return Response(response=json.dumps(user.to_dict()), status=200, content_type="application/json")
 
 @app.route('/add', methods=['POST'])
-def add():
-    data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
-    name = data.get('name')
-    email = data.get('email')
+def add():    
     user = User(
-        username=username,
-        password=password,
-        name=name,
-        email=email
-    )
+        request.form['username'],
+        request.form['password'],
+        request.form['name'],
+        request.form['email']
+        )
     db.session.add(user)
     db.session.commit()
-    return jsonify({'status': 'success', 'message': 'User added successfully'})
-
+    return Response(response=json.dumps({'status':'sucess', 'data':user.to_dict()}), status=200, content_type="application/json")
 
 @app.route('/edit/<int:id>', methods=['PUT', 'POST'])
-def edit(id):
+@jwt_required
+def edit(id, current_user):
     user = User.query.get(id)
     user.username = request.form['username']
     user.password = request.form['password']
@@ -45,7 +43,8 @@ def edit(id):
     return Response(response=json.dumps(user.to_dict()), status=200, content_type="application/json")
 
 @app.route('/delete/<int:id>', methods=['GET', 'DELETE'])
-def delete(id):
+@jwt_required
+def delete(id, current_user):
     user = User.query.get(id)
     db.session.delete(user)
     db.session.commit()
