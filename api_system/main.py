@@ -25,8 +25,7 @@ def make_shell_context():
         User=User
     )
 
-if __name__ == '__main__':
-    #db.init_app(app=app)
+if __name__ == '__main__':    
     with app.test_request_context():
         db.create_all()
     app.run(debug=True)
