@@ -10,10 +10,10 @@ app = Blueprint("auth", __name__)
 @app.route('/register', methods=["POST"])
 def register():
     if request.method == 'POST':
-        username = request.form['username']
-        nome = request.form['username']
-        email = request.form['email']
-        password = request.form['password']
+        username = request.json['username']
+        nome = request.json['username']
+        email = request.json['email']
+        password = request.json['password']
         user = User(
             username,password,nome,email
         )
@@ -24,8 +24,8 @@ def register():
 
 @app.route('/login', methods=["POST"])
 def login():
-    email = request.form['email']
-    password = request.form['password']
+    email = request.json['email']
+    password = request.json['password']
 
     user = User.query.filter_by(email=email).first_or_404()
 

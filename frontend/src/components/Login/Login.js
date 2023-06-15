@@ -11,14 +11,14 @@ const Login = () => {
 
     async function handleSubmit(event) {
 		event.preventDefault();
-		const request = await fetch('http://localhost:5000/user/add', {
+		const request = await fetch('http://localhost:5000/auth/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				username,
-				password
+				'email':username,
+				'password':password
 			}),
 		})
 		if (request.ok) {
