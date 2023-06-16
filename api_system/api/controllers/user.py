@@ -18,18 +18,6 @@ def view(id, current_user):
     user = User.query.get(id)
     return Response(response=json.dumps(user.to_dict()), status=200, content_type="application/json")
 
-# @app.route('/add', methods=['POST'])
-# def add():    
-#     user = User(
-#         request.form['username'],
-#         request.form['password'],
-#         request.form['name'],
-#         request.form['email']
-#         )
-#     db.session.add(user)
-#     db.session.commit()
-#     return Response(response=json.dumps({'status':'sucess', 'data':user.to_dict()}), status=200, content_type="application/json")
-
 @app.route('/edit/<int:id>', methods=['PUT', 'POST'])
 @jwt_required
 def edit(id, current_user):
