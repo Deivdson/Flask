@@ -2,6 +2,7 @@ import './style.css'
 
 import React from 'react'
 import {useState} from 'react'
+import {useNavigate} from 'react-router-dom';
 
 import Navbar from '../Navbar/Navbar'
 
@@ -10,6 +11,7 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const navigate = useNavigate();
 
     async function handleSubmit(event) {
 		event.preventDefault();
@@ -26,12 +28,13 @@ const SignUp = () => {
 			}),
 		})
 		if (request.ok) {
-            console.log('Solicitação bem-sucedida');
-            console.log('Status do código:', request.status);
-          } else {
-            console.log('Erro na solicitação');
-            console.log('Status do código:', request.status);
-          }
+      console.log('Solicitação bem-sucedida');
+      console.log('Status do código:', request.status);
+      navigate('/adicionar-lote');
+    } else {
+      console.log('Erro na solicitação');
+      console.log('Status do código:', request.status);
+    }
 	}
 
     const handleUsername = (event) => {
