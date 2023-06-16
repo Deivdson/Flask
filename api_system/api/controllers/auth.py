@@ -35,7 +35,7 @@ def login():
         }), 403
     payload = {
         "id": user.id,
-        "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=30),        
+        "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=10),        
     }
 
     token = jwt.encode(payload, api.app.config['SECRET_KEY'])
