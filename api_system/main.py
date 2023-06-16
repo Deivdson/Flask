@@ -15,7 +15,6 @@ app.register_blueprint(lote_controller, url_prefix="/lote/")
 app.register_blueprint(casa_controller, url_prefix="/casa/")
 app.register_blueprint(auth_controller, url_prefix="/auth/")
 
-#Migrate(app, db)
 
 @app.shell_context_processor
 def make_shell_context():
