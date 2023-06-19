@@ -8,13 +8,19 @@ const Lotes = () => {
 
     useEffect(() => {
 		const loadData = async (e) => {
-			fetch(`http://localhost:5000/lote`)
+			fetch(`http://localhost:5000/lote/`, {				
+			 	method:'GET',
+			  	headers: {
+					'authorization':`Bearer ${localStorage.getItem('token')}`
+				}
+			})
 				.then((lote) => lote.json())
 				.then((data) => setLotes(data))
 				.catch(err => console.error(err))
 		    }
-		loadData()
+		loadData()		
 	})
+	
 
 	return (
 		<div id="lotes">

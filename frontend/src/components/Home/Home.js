@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from '../Navbar/Navbar';
 
 const Home = () => {
-
+	console.log(localStorage.getItem('username'))
 	return (
 		<div id="home">
 			<Navbar />

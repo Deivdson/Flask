@@ -2,7 +2,8 @@ import './style.css'
 
 import React from 'react';
 import {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {Navigate, useNavigate} from 'react-router-dom';
+
 
 import Navbar from '../Navbar/Navbar'
 
@@ -10,6 +11,9 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+
+    const [err, setErr] = useState(false);
+	  const navigate = useNavigate();
 
     async function handleSubmit(event) {
 		event.preventDefault();
@@ -25,14 +29,29 @@ const Login = () => {
 		})
     const response = await request.json();
 		if (request.ok) {
-      console.log('Solicitação bem-sucedida');
-      console.log('Status do código:', request.status);
-      localStorage.setItem('token', response.user);
-      navigate('/adicionar-lote');
-    } else {
-      console.log('Erro na solicitação');
-      console.log('Status do código:', request.status);
-    }
+          console.log('Solicitação bem-sucedida');
+          console.log('Status do código:', request.status);
+        } else {
+          console.log('Erro na solicitação');
+          console.log('Status do código:', request.status);
+        }
+
+    const response = await request.json();
+    console.log(response)
+
+    if (request.status === 200) {
+			localStorage.setItem('token', response.token);
+
+			localStorage.setItem('username',response.user.username);			
+			localStorage.setItem('name',response.user.name);			
+			localStorage.setItem('email',response.user.email);			
+      
+			navigate('/');
+		}
+		if (request.status === 401) {
+			setErr(true)
+		}
+
 	}
 
     const handleUsername = (event) => {
