@@ -14,7 +14,6 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     const [err, setErr] = useState(false);
-	  const navigate = useNavigate();
 
     async function handleSubmit(event) {
 		event.preventDefault();

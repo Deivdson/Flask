@@ -13,7 +13,6 @@ const Login = () => {
     const navigate = useNavigate();
 
     const [err, setErr] = useState(false);
-	  const navigate = useNavigate();
 
     async function handleSubmit(event) {
 		event.preventDefault();
@@ -36,7 +35,6 @@ const Login = () => {
           console.log('Status do código:', request.status);
         }
 
-    const response = await request.json();
     console.log(response)
 
     if (request.status === 200) {

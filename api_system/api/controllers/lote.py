@@ -29,20 +29,22 @@ def add(current_user):
     tamanho = data.get('tamanho')
     endereco = data.get('endereco')
     cep = data.get('cep')
+    
     lote = Lote(
         valor=valor,
         tamanho=tamanho,
         endereco=endereco,
-        cep=cep
+        cep=cep,
+        user_id=current_user.id
     )
     db.session.add(lote)
     db.session.commit()
-    return jsonify({'status': 'success', 'message': 'Lote added successfully'})
+    return jsonify({'status': 'success', 'message': 'Lote added successfully'})    
 
 @app.route('/edit/<int:id>', methods=['PUT', 'POST'])
 @jwt_required
-def edit(id, current_user):
-    lote = Lote.query.get(id)
+def edit(current_user):
+    lote = Lote.query.get(current_user.id)
     lote.valor = request.form['valor']
     lote.endereco = request.form['endereco']
     lote.cep =      request.form['cep']

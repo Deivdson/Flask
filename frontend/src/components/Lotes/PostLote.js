@@ -12,16 +12,16 @@ const PostLote = () => {
     const [cep, setCEP] = useState('');
     const [usuario, setUsuario] = useState([]);
 
-    useEffect(() => {
-        const loadData = async (e) => {
-            const reponse = await fetch('http://localhost:5000/user')
-            .then((res) => res.json())
-            .then((data) => data)
-            .catch((err) => console.error(err))
-            setUsuario(reponse);
-        }
-		loadData()
-	}, [])
+    // useEffect(() => {
+    //     const loadData = async (e) => {
+    //         const reponse = await fetch('http://localhost:5000/user')
+    //         .then((res) => res.json())
+    //         .then((data) => data)
+    //         .catch((err) => console.error(err))
+    //         setUsuario(reponse);
+    //     }
+	// 	loadData()
+	// }, [])
 
     async function handleSubmit(event) {
 		event.preventDefault();
@@ -35,7 +35,7 @@ const PostLote = () => {
 				tamanho,
                 endereco,
                 cep,
-                usuario: usuario[usuario.length - 1].id
+                // usuario: usuario[usuario.length - 1].id
 			})
 		})
 		if (request.ok) {
