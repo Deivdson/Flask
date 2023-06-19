@@ -2,6 +2,7 @@ import './style.css'
 
 import React from 'react'
 import {useState,useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
 
 import Navbar from '../Navbar/Navbar'
 
@@ -10,18 +11,15 @@ const PostLote = () => {
     const [tamanho, setTamanho] = useState('');
     const [endereco, setEndereco] = useState('');
     const [cep, setCEP] = useState('');
-    const [usuario, setUsuario] = useState([]);
 
-    // useEffect(() => {
-    //     const loadData = async (e) => {
-    //         const reponse = await fetch('http://localhost:5000/user')
-    //         .then((res) => res.json())
-    //         .then((data) => data)
-    //         .catch((err) => console.error(err))
-    //         setUsuario(reponse);
-    //     }
-	// 	loadData()
-	// }, [])
+    const id = localStorage.getItem('token');
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (id == null) {
+            navigate('/');
+        }
+	})
 
     async function handleSubmit(event) {
 		event.preventDefault();
@@ -36,8 +34,7 @@ const PostLote = () => {
 				valor,
 				tamanho,
                 endereco,
-                cep,
-                // usuario: usuario[usuario.length - 1].id
+                cep
 			})
 		})
 		if (request.ok) {

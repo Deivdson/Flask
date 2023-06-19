@@ -26,7 +26,11 @@ const Lotes = () => {
 		<div id="lotes">
 			<Navbar />
             {lotes.map((lote) => (
-                <p key={lote.id}>{lote.endereco}</p>
+				<div key={lote.id}>
+				<p>{lote.endereço}</p>
+				<p>{lote.cep}</p>
+				<p>{lote.m&rbrace}</p>
+				</div>
             ))}
 		</div>
 	);
