@@ -22,10 +22,11 @@ def view(id, current_user):
 @app.route('/add', methods=['POST'])
 @jwt_required
 def add(current_user):    
+    data = request.get_json()
     casa = Casa(
-        request.form['tamanho'],    
-        request.form['user_id'],
-        request.form['lote_id']
+        data.get('tamanho'),
+        data.get('user_id'),
+        data.get('lote_id')
         )
     db.session.add(casa)
     db.session.commit()
@@ -34,10 +35,11 @@ def add(current_user):
 @app.route('/edit/<int:id>', methods=['PUT', 'POST'])
 @jwt_required
 def edit(id, current_user):
+    data = request.get_json()
     casa = Casa.query.get(id)
-    casa.tamanho = request.form['tamanho']
-    casa.user_id = request.form['user_id']
-    casa.lote_id = request.form['lote_id']
+    casa.tamanho = data.get('tamanho')
+    casa.user_id = data.get('user_id')
+    casa.lote_id = data.get('lote_id')
     db.session.commit()
     return Response(response=json.dumps(casa.to_dict()), status=200, content_type="application/json")
 

@@ -43,13 +43,14 @@ def add(current_user):
 
 @app.route('/edit/<int:id>', methods=['PUT', 'POST'])
 @jwt_required
-def edit(current_user):
-    lote = Lote.query.get(current_user.id)
-    lote.valor = request.form['valor']
-    lote.endereco = request.form['endereco']
-    lote.cep =      request.form['cep']
-    lote.tamanho =       request.form['tamanho']
-    lote.user_id =  request.form['user_id']
+def edit(id, current_user):
+    data = request.get_json()
+    lote = Lote.query.get(id)
+    lote.valor =        data.get('valor')
+    lote.endereco =     data.get('endereco')
+    lote.cep =          data.get('cep')
+    lote.tamanho =      data.get('tamanho')
+    lote.user_id =      data.get('user_id')
     db.session.commit()
     return Response(response=json.dumps(lote.to_dict()), status=200, content_type="application/json")
 

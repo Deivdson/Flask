@@ -21,12 +21,13 @@ def view(id, current_user):
 @app.route('/edit/<int:id>', methods=['PUT', 'POST'])
 @jwt_required
 def edit(id, current_user):
+    data = request.get_json()
     user = User.query.get(id)
-    user.username = request.form['username']
-    user.password = request.form['password']
-    user.name = request.form['name']
-    user.email = request.form['email']
-    user.email = request.form['email']
+    user.username = data.get('username')
+    user.password = data.get('password')
+    user.name = data.get('name')
+    user.email = data.get('email')
+    user.email = data.get('email')
     db.session.commit()
     return Response(response=json.dumps(user.to_dict()), status=200, content_type="application/json")
 
