@@ -25,10 +25,12 @@ const PostLote = () => {
 
     async function handleSubmit(event) {
 		event.preventDefault();
+        const token = localStorage.getItem('token');
 		const request = await fetch('http://localhost:5000/lote/add', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
 			},
 			body: JSON.stringify({
 				valor,

@@ -2,7 +2,7 @@ import './style.css'
 
 import React from 'react';
 import {useState} from 'react';
-import {Navigate, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 
 import Navbar from '../Navbar/Navbar'
@@ -10,9 +10,7 @@ import Navbar from '../Navbar/Navbar'
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();
-
-    const [err, setErr] = useState(false);
+    const [setErr] = useState(false);
 	  const navigate = useNavigate();
 
     async function handleSubmit(event) {
@@ -35,8 +33,6 @@ const Login = () => {
           console.log('Erro na solicitação');
           console.log('Status do código:', request.status);
         }
-
-    const response = await request.json();
     console.log(response)
 
     if (request.status === 200) {

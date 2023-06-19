@@ -8,8 +8,7 @@ app = Blueprint("lotes", __name__)
 
 
 @app.route('/')
-@jwt_required
-def index(current_user):
+def index():
     lotes = Lote.query.all()
     result = [u.to_dict() for u in lotes]
     return Response(response=json.dumps(result), status=200, content_type="application/json")
@@ -33,7 +32,8 @@ def add(current_user):
         valor=valor,
         tamanho=tamanho,
         endereco=endereco,
-        cep=cep
+        cep=cep,
+        user_id=current_user.id
     )
     db.session.add(lote)
     db.session.commit()

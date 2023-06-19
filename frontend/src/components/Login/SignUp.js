@@ -2,7 +2,7 @@ import './style.css'
 
 import React from 'react'
 import {useState} from 'react'
-import {Navigate, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import Navbar from '../Navbar/Navbar'
 
@@ -11,9 +11,7 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const navigate = useNavigate();
-
-    const [err, setErr] = useState(false);
+    const [setErr] = useState(false);
 	  const navigate = useNavigate();
 
     async function handleSubmit(event) {
@@ -31,7 +29,6 @@ const SignUp = () => {
 			}),
 		})
 		if (request.ok) {
-
             console.log('Solicitação bem-sucedida');
             console.log('Status do código:', request.status);
             console.log(request.body)
