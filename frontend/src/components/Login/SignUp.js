@@ -11,6 +11,7 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const navigate = useNavigate();
 
     const [err, setErr] = useState(false);
 	  const navigate = useNavigate();
@@ -30,6 +31,7 @@ const SignUp = () => {
 			}),
 		})
 		if (request.ok) {
+
             console.log('Solicitação bem-sucedida');
             console.log('Status do código:', request.status);
             console.log(request.body)
@@ -48,6 +50,7 @@ const SignUp = () => {
 		if (request.status === 401) {
 			setErr(true)
 		}
+
 	}
 
     const handleUsername = (event) => {
