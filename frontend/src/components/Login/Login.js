@@ -10,8 +10,9 @@ import Navbar from '../Navbar/Navbar'
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [setErr] = useState(false);
-	  const navigate = useNavigate();
+    const navigate = useNavigate();
+
+    const [err, setErr] = useState(false);
 
     async function handleSubmit(event) {
 		event.preventDefault();
@@ -33,6 +34,7 @@ const Login = () => {
           console.log('Erro na solicitação');
           console.log('Status do código:', request.status);
         }
+
     console.log(response)
 
     if (request.status === 200) {

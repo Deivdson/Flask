@@ -11,8 +11,8 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [setErr] = useState(false);
-	  const navigate = useNavigate();
+    const navigate = useNavigate();
+    const [err, setErr] = useState(false);
 
     async function handleSubmit(event) {
 		event.preventDefault();
