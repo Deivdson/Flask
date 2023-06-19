@@ -2,6 +2,7 @@ from flask import Blueprint, request, Response, jsonify
 from ..utils.authenticate import jwt_required
 from ..models.models import db, Lote
 import json
+from flask_cors import cross_origin
 
 app = Blueprint("lotes", __name__)
 

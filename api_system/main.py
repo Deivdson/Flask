@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 from api.models.models import User
 from flask import jsonify
 from api import app, db
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
         
 CORS(app)
 
@@ -26,5 +26,5 @@ def make_shell_context():
 
 if __name__ == '__main__':    
     with app.test_request_context():
-        db.create_all()
+        db.create_all()    
     app.run(debug=True)

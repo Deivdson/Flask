@@ -2,6 +2,7 @@ import './style.css'
 
 import React from 'react'
 import {useState} from 'react'
+import {Navigate, useNavigate} from 'react-router-dom';
 
 import Navbar from '../Navbar/Navbar'
 
@@ -10,6 +11,9 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+
+    const [err, setErr] = useState(false);
+	  const navigate = useNavigate();
 
     async function handleSubmit(event) {
 		event.preventDefault();
@@ -28,10 +32,22 @@ const SignUp = () => {
 		if (request.ok) {
             console.log('Solicitação bem-sucedida');
             console.log('Status do código:', request.status);
+            console.log(request.body)
           } else {
             console.log('Erro na solicitação');
             console.log('Status do código:', request.status);
           }
+    const response = await request.json();
+    console.log(response)
+
+    if (request.status === 200) {
+      console.log("Setando token")
+			localStorage.setItem('token', response.token);
+			navigate('/');
+		}
+		if (request.status === 401) {
+			setErr(true)
+		}
 	}
 
     const handleUsername = (event) => {
