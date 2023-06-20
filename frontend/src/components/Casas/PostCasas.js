@@ -9,6 +9,7 @@ const PostCasa = () => {
     const [tamanho, setTamanho] = useState('');
     const [usuario, setUsuario] = useState([]);
     const [lote, setLote] = useState([]);
+    const token = localStorage.getItem('token')
 
     useEffect(() => {
         const loadData = async (e) => {
@@ -33,11 +34,12 @@ const PostCasa = () => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
 			},
 			body: JSON.stringify({
 				tamanho,
-                usuario: usuario[usuario.length - 1].id,
-                lote: lote[lote.length - 1].id
+                usuario,
+                lote
 			})
 		})
 		if (request.ok) {
@@ -52,6 +54,12 @@ const PostCasa = () => {
 	const handleTamanho = (event) => {
 		setTamanho(event.target.value)
 	}
+	const handleLote = (event) => {
+		setLote(event.target.value)
+	}
+	const handleUser = (event) => {
+		setUsuario(event.target.value)
+	}
 
 	return (
 		<div>
@@ -61,7 +69,9 @@ const PostCasa = () => {
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="tamanho">Tamanho</label>
                     <br />
-                    <input type="number" name="tamanho" placeholder="Insira o tamanho da casa" title="Insira o tamanho da casa" value={tamanho} onChange={handleTamanho}/>
+                    <input className='f-input' type="number" name="tamanho" placeholder="Insira o tamanho da casa" title="Insira o tamanho da casa" value={tamanho} onChange={handleTamanho}/>
+                    <input className='f-input' type="number" name="lote" placeholder="Insira um lote" title="Insira o id do lote" value={lote} onChange={handleLote}/>
+                    <input className='f-input' type="number" name="user" placeholder="Insira um usuário" title="Insira o id do usuário" value={usuario} onChange={handleUser}/>
                     <br />
                     <br />
                     <button type="submit">Adicionar Casa</button>

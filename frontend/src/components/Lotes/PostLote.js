@@ -12,9 +12,7 @@ const PostLote = () => {
     const [endereco, setEndereco] = useState('');
     const [cep, setCEP] = useState('');
     const [usuario, setUsuario] = useState([]);
-    const token = localStorage.getItem('token');
-
-    const id = localStorage.getItem('token');
+    const token = localStorage.getItem('token');    
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -56,6 +54,7 @@ const PostLote = () => {
             console.log('Erro na solicitação');
             console.log('Status do código:', request.status);
           }
+          navigate("/lotes")
 	}
 
 	const handleValor = (event) => {

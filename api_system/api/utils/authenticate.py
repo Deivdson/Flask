@@ -16,11 +16,13 @@ def jwt_required(f):
         
         if not "Bearer" in token:        
             return jsonify({"error": "token inválido."}), 403
-                   
-        token_pure = token.replace("Bearer ", "")    
-        decoded = jwt.decode(token_pure, current_app.config['SECRET_KEY'],'HS256')    
-        current_user = User.query.get(decoded['id'])    
-        
-        return f(current_user=current_user, *args, **kwargs)
+        try:        
+            token_pure = token.replace("Bearer ", "")    
+            decoded = jwt.decode(token_pure, current_app.config['SECRET_KEY'],'HS256')    
+            current_user = User.query.get(decoded['id'])    
+            
+            return f(current_user=current_user, *args, **kwargs)
+        except:
+            return jsonify({"error": "token inspirado."}), 403
     
     return wrapper
