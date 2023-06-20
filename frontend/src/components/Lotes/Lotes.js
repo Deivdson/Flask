@@ -15,7 +15,7 @@ const Lotes = () => {
 				}
 			})
 				.then((lote) => lote.json())
-				.then((data) => setLotes(data))
+				.then((data) => setLotes(data))				
 				.catch(err => console.error(err))
 		    }
 		loadData()		
@@ -25,8 +25,9 @@ const Lotes = () => {
 	return (
 		<div id="lotes">
 			<Navbar />
+			<h3>Lotes</h3>
             {lotes.map((lote) => (
-                <p key={lote.id}>{lote.endereco}</p>
+                <h4 key={lote.id}>{lote.endereco}, {lote.cep}</h4>
             ))}
 		</div>
 	);
