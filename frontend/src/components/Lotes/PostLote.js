@@ -2,6 +2,7 @@ import './style.css'
 
 import React from 'react'
 import {useState,useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
 
 import Navbar from '../Navbar/Navbar'
 
@@ -12,6 +13,9 @@ const PostLote = () => {
     const [cep, setCEP] = useState('');
     const [usuario, setUsuario] = useState([]);
     const token = localStorage.getItem('token');
+
+    const id = localStorage.getItem('token');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const loadData = async (e) => {
