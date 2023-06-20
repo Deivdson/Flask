@@ -27,7 +27,11 @@ const Lotes = () => {
 			<Navbar />
 			<h3>Lotes</h3>
             {lotes.map((lote) => (
-                <h4 key={lote.id}>{lote.endereco}, {lote.cep}</h4>
+				<div key={lote.id}>
+				<p>{lote.endereço}</p>
+				<p>{lote.cep}</p>
+				<p>{lote.m&rbrace}</p>
+				</div>
             ))}
 		</div>
 	);
