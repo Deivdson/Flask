@@ -30,7 +30,6 @@ const Lotes = () => {
 				<div key={lote.id}>
 				<p>{lote.endereço}</p>
 				<p>{lote.cep}</p>
-				<p>{lote.m&rbrace}</p>
 				</div>
             ))}
 		</div>

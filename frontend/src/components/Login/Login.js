@@ -12,7 +12,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const [err, setErr] = useState(false);
+    const [setErr] = useState(false);
 
     async function handleSubmit(event) {
 		event.preventDefault();
@@ -34,8 +34,6 @@ const Login = () => {
           console.log('Erro na solicitação');
           console.log('Status do código:', request.status);
         }
-
-    console.log(response)
 
     if (request.status === 200) {
 			localStorage.setItem('token', response.token);
