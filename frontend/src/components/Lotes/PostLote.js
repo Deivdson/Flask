@@ -11,21 +11,26 @@ const PostLote = () => {
     const [endereco, setEndereco] = useState('');
     const [cep, setCEP] = useState('');
     const [usuario, setUsuario] = useState([]);
+    const token = localStorage.getItem('token');
 
-    // useEffect(() => {
-    //     const loadData = async (e) => {
-    //         const reponse = await fetch('http://localhost:5000/user')
-    //         .then((res) => res.json())
-    //         .then((data) => data)
-    //         .catch((err) => console.error(err))
-    //         setUsuario(reponse);
-    //     }
-	// 	loadData()
-	// }, [])
-
+    useEffect(() => {
+        const loadData = async (e) => {
+            const reponse = await fetch('http://localhost:5000/user/',{
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then((res) => res.json())
+            .then((data) => data)
+            .catch((err) => console.error(err))
+            setUsuario(reponse);
+        }
+		loadData()
+	}, [])
+    console.log(usuario)
     async function handleSubmit(event) {
-		event.preventDefault();
-        const token = localStorage.getItem('token');
+		event.preventDefault();        
 		const request = await fetch('http://localhost:5000/lote/add', {
 			method: 'POST',
 			headers: {
@@ -37,7 +42,7 @@ const PostLote = () => {
 				tamanho,
                 endereco,
                 cep,
-                // usuario: usuario[usuario.length - 1].id
+                usuario_id: usuario[usuario.length - 1].id
 			})
 		})
 		if (request.ok) {
