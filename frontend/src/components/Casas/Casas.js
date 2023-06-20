@@ -10,10 +10,9 @@ import {
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
+  Center 
 } from '@chakra-ui/react'
-import { Center } from '@chakra-ui/react'
 
 const Casas = () => {
     const [casas, setCasas] = useState([]);

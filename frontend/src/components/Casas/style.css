@@ -10,11 +10,16 @@
 
     background: #FFFFFF;
     border: 1px solid #E5E7EB;
-    margin: 2rem 40rem;
+
 
     /* Inside auto layout */
-
+}
+.f-label{
+    margin-top: 5rem;
 }
 .tabela{
     margin-top: 5rem;
+}
+.corpo{
+    display: flex;
 }
