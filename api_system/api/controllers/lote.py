@@ -28,13 +28,14 @@ def add(current_user):
     tamanho = data.get('tamanho')
     endereco = data.get('endereco')
     cep = data.get('cep')
+    id = data.get('usuario_id')
     
     lote = Lote(
         valor=valor,
         tamanho=tamanho,
         endereco=endereco,
         cep=cep,
-        user_id=current_user.id
+        user_id=id
     )
     db.session.add(lote)
     db.session.commit()
