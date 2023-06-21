@@ -59,7 +59,7 @@ class Lote(db.Model):
     
     def to_dict(self, columns=[]):
         if not columns:
-            return {"id":self.id, "endereço":self.endereco, "cep":self.cep, "m²":self.tamanho, "user_id":self.user_id}
+            return {"id":self.id, "endereço":self.endereco, "cep":self.cep, "tamanho":self.tamanho, "user_id":self.user_id}
         else:
             return{col:getattr(self, col) for col in columns}
     
@@ -84,6 +84,6 @@ class Casa(db.Model):
     
     def to_dict(self, columns=[]):
         if not columns:
-            return {"id":self.id, "m²":self.tamanho, "user_id":self.user_id, "lote_id":self.user_id}
+            return {"id":self.id, "tamanho":self.tamanho, "user_id":self.user_id, "lote_id":self.user_id}
         else:
             return{col:getattr(self, col) for col in columns}

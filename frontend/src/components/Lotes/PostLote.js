@@ -11,19 +11,28 @@ const PostLote = () => {
     const [tamanho, setTamanho] = useState('');
     const [endereco, setEndereco] = useState('');
     const [cep, setCEP] = useState('');
-
-    const id = localStorage.getItem('token');
+    const [usuario, setUsuario] = useState([]);
+    const token = localStorage.getItem('token');    
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (id == null) {
-            navigate('/');
+        const loadData = async (e) => {
+            const reponse = await fetch('http://localhost:5000/user/',{
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then((res) => res.json())
+            .then((data) => data)
+            .catch((err) => console.error(err))
+            setUsuario(reponse);
         }
-	})
-
+		loadData()
+	}, [])
+    console.log(usuario)
     async function handleSubmit(event) {
-		event.preventDefault();
-        const token = localStorage.getItem('token');
+		event.preventDefault();        
 		const request = await fetch('http://localhost:5000/lote/add', {
 			method: 'POST',
 			headers: {
@@ -34,7 +43,8 @@ const PostLote = () => {
 				valor,
 				tamanho,
                 endereco,
-                cep
+                cep,
+                usuario_id: usuario[usuario.length - 1].id
 			})
 		})
 		if (request.ok) {
@@ -44,6 +54,7 @@ const PostLote = () => {
             console.log('Erro na solicitação');
             console.log('Status do código:', request.status);
           }
+          navigate("/lotes")
 	}
 
 	const handleValor = (event) => {

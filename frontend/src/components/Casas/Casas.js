@@ -2,13 +2,30 @@ import './style.css'
 import React from 'react'
 import {useState, useEffect} from 'react'
 import Navbar from '../Navbar/Navbar'
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableContainer,
+  Center 
+} from '@chakra-ui/react'
 
 const Casas = () => {
     const [casas, setCasas] = useState([]);
-
+	const token = localStorage.getItem('token')
+	
     useEffect(() => {
 		const loadData = async (e) => {
-			fetch(`http://localhost:5000/casa`)
+			fetch(`http://localhost:5000/casa/`,{
+				method:'GET',
+			  	headers: {
+					'authorization':`Bearer ${token}`
+				}
+			})
 				.then((casa) => casa.json())
 				.then((data) => setCasas(data))
 				.catch(err => console.error(err))
@@ -16,12 +33,40 @@ const Casas = () => {
 		loadData()
 	})
 
+
 	return (
 		<div id="casas">
 			<Navbar />
-            {casas.map((casa) => (
-                <p key={casa.id}>{casa.endereco}</p>
-            ))}
+			<h1>Casas</h1>
+			<Center className='tabela'>
+				<TableContainer>
+				<Table variant='simple'>					
+					<Thead>
+					<Tr>
+						<Th>Lote_id</Th>
+						<Th>User_id</Th>
+						<Th isNumeric>Tamanho</Th>
+					</Tr>
+					</Thead>
+					<Tbody>
+						{casas.map((casa) => (				          
+						<Tr key={casa.id}>
+							<Td>{casa.lote_id}</Td>
+							<Td>{casa.user_id}</Td>
+							<Td>{casa.tamanho}</Td>
+						</Tr>
+						))}
+					</Tbody>
+					<Tfoot>
+					<Tr>
+						<Th>Lote_id</Th>
+						<Th>User_id</Th>
+						<Th isNumeric>Tamanho</Th>
+					</Tr>
+					</Tfoot>
+				</Table>
+				</TableContainer>
+			</Center>
 		</div>
 	);
 };

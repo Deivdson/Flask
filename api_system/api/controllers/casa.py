@@ -25,9 +25,10 @@ def add(current_user):
     data = request.get_json()
     casa = Casa(
         data.get('tamanho'),
-        data.get('user_id'),
-        data.get('lote_id')
+        data.get('usuario'),
+        data.get('lote')
         )
+    print(data)
     db.session.add(casa)
     db.session.commit()
     return Response(response=json.dumps({'status':'sucess', 'data':casa.to_dict()}), status=200, content_type="application/json")
