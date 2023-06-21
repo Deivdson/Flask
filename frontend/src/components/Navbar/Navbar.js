@@ -3,7 +3,6 @@ import './style.css'
 const Navbar = () => {
     const idNavbar = localStorage.getItem('token')
     const user = localStorage.getItem('username')
-    console.log(idNavbar)
 
 	function Sair() {
 		localStorage.removeItem('token')
@@ -50,32 +49,32 @@ const Navbar = () => {
 		if (idNavbar == null) {
 			return (
 				<div className='menu'>
-                    <h4><a href="/">Início</a></h4>
-                    <h4><a href="/">Lotes</a></h4>
-                    <h4><a href="/">Casas</a></h4>
-                    <div className='login-menu'>
-                        <h4><a href="/login">Entrar</a></h4>
-                        <h4><a href="/signup">Cadastrar</a></h4>
-                    </div>
-                </div>
-			);
+            <h4><a href="/">Início</a></h4>
+            <h4><a href="/">Lotes</a></h4>
+            <h4><a href="/">Casas</a></h4>
+            <div className='login-menu'>
+                <h4><a href="/login">Entrar</a></h4>
+                <h4><a href="/signup">Cadastrar</a></h4>
+            </div>
+        </div>
+			)
 		} else {
 			return (
 				<div className='menu'>
-                    <h4><a href="/">Início</a></h4>
-                    <h4><a href="/">Lotes</a></h4>
-                    <h4><a href="/">Casas</a></h4>
-                    <div className='login-menu'>
-                        <li className="dropdown">
-                            <h4 onClick={() => initDropDownMenu()}>Olá, {user}</h4>
-                            <ul className="dropdown-menu">
-                                <li><a href="/adicionar-lote">Adicionar lote</a></li> 
-                                <li><a href="/adicionar-casa">Adicionar casa</a></li>
-                                <li><a href="/" onClick={() => Sair()}>Sair</a></li>
-                            </ul>
-                        </li>
-                    </div>
-                </div>
+            <h4><a href="/">Início</a></h4>
+            <h4><a href="/">Lotes</a></h4>
+            <h4><a href="/">Casas</a></h4>
+            <div className='login-menu'>
+                <li className="dropdown">
+                    <h4 onClick={() => initDropDownMenu()}>Olá, {user}</h4>
+                    <ul className="dropdown-menu">
+                        <li><a href="/adicionar-lote">Adicionar lote</a></li> 
+                        <li><a href="/adicionar-casa">Adicionar casa</a></li>
+                        <li><a href="/" onClick={() => Sair()}>Sair</a></li>
+                    </ul>
+                </li>
+            </div>
+        </div>
 			);
 		}
 	};

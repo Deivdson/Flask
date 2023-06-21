@@ -1,4 +1,23 @@
-p {
-    color: black;
-    margin-top: 10rem;
+#lotes h1 {
+    position: absolute;
+    top: 8rem;
+    left: 2rem;
+}
+
+.boxcards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    position: absolute;
+    top: 12rem;
+    left: 2rem;
+    background-color: #4682b4;
+    width: 95.5%;
+    height: 50%;
+}
+
+.boxcards:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
 }

@@ -87,8 +87,5 @@
   left: -100px;
   text-align: left;
   padding: 10px;
-}
-
-.dropdown-menu li a:hover {
-  color: white;
+  font-weight: bold;
 }

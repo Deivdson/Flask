@@ -30,7 +30,7 @@ const PostLote = () => {
         }
 		loadData()
 	}, [])
-    console.log(usuario)
+    
     async function handleSubmit(event) {
 		event.preventDefault();        
 		const request = await fetch('http://localhost:5000/lote/add', {
