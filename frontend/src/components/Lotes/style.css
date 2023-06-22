@@ -1,7 +1,25 @@
-#lotes h1 {
+#lotes h1,
+.postLotes h1 {
     position: absolute;
     top: 8rem;
     left: 2rem;
+}
+
+.loteForm {
+    position: relative;
+    left: -220px;
+}
+
+.casaForm {
+    position: relative;
+    top: -594px;
+    right: -220px;
+}
+
+.loteForm h1,
+.casaForm h1  {
+    position: relative;
+    top: -60px;
 }
 
 .boxcards {
@@ -10,14 +28,21 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    position: absolute;
-    top: 12rem;
+    position: relative;
+    top: 10rem;
     left: 2rem;
+    margin-top: 10px;
+    padding: 80px;
     background-color: #4682b4;
-    width: 95.5%;
-    height: 50%;
+    width: 78%;
+    border: solid red 1px;
 }
 
 .boxcards:hover {
     box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
+
+.boxcards h4 {
+    color: white;
+    text-align: left;
 }

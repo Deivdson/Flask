@@ -2,37 +2,51 @@ import './style.css'
 
 import React from 'react'
 import {useState,useEffect} from 'react'
-import {useNavigate} from 'react-router-dom'
 
 import Navbar from '../Navbar/Navbar'
 
 const PostLote = () => {
-    const [valor, setValor] = useState('');
-    const [tamanho, setTamanho] = useState('');
-    const [endereco, setEndereco] = useState('');
-    const [cep, setCEP] = useState('');
-    const [usuario, setUsuario] = useState([]);
-    const token = localStorage.getItem('token');    
-    const navigate = useNavigate();
+    const [valor, setValor] = useState('')
+    const [tamanhoLote, setTamanhoLote] = useState('')
+    const [endereco, setEndereco] = useState('')
+    const [cep, setCEP] = useState('')
+    const [tamanhoCasa, setTamanhoCasa] = useState('')
+
+    const [lote, setLote] = useState([])
+    const [usuario, setUsuario] = useState([])
+
+    const token = localStorage.getItem('token')
 
     useEffect(() => {
         const loadData = async (e) => {
-            const reponse = await fetch('http://localhost:5000/user/',{
+            
+            const userReponse = await fetch('http://localhost:5000/user/',{
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
             })
             .then((res) => res.json())
             .then((data) => data)
             .catch((err) => console.error(err))
-            setUsuario(reponse);
+            setUsuario(userReponse)
+
+            const loteReponse = await fetch('http://localhost:5000/lote/',{
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            .then((res) => res.json())
+            .then((data) => data)
+            .catch((err) => console.error(err))
+            setLote(loteReponse)
         }
 		loadData()
 	}, [])
     
-    async function handleSubmit(event) {
-		event.preventDefault();        
+    async function loteSubmit(event) {
+		event.preventDefault()        
 		const request = await fetch('http://localhost:5000/lote/add', {
 			method: 'POST',
 			headers: {
@@ -41,28 +55,51 @@ const PostLote = () => {
 			},
 			body: JSON.stringify({
 				valor,
-				tamanho,
+				tamanhoLote,
                 endereco,
                 cep,
                 usuario_id: usuario[usuario.length - 1].id
 			})
 		})
 		if (request.ok) {
-            console.log('Solicitação bem-sucedida');
-            console.log('Status do código:', request.status);
+            console.log('Solicitação bem-sucedida')
+            console.log('Status do código:', request.status)
+            alert('Lote cadastrado com sucesso')
           } else {
-            console.log('Erro na solicitação');
-            console.log('Status do código:', request.status);
+            console.log('Erro na solicitação')
+            console.log('Status do código:', request.status)
           }
-          navigate("/lotes")
+	}
+
+    async function casaSubmit(event) {
+		event.preventDefault()        
+		const request = await fetch('http://localhost:5000/casa/add', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+			},
+			body: JSON.stringify({
+				tamanhoCasa,
+                usuario_id: usuario[usuario.length - 1].id,
+                lote: lote[lote.length - 1].id
+			})
+		})
+		if (request.ok) {
+            console.log('Solicitação bem-sucedida')
+            console.log('Status do código:', request.status)
+          } else {
+            console.log('Erro na solicitação')
+            console.log('Status do código:', request.status)
+          }
 	}
 
 	const handleValor = (event) => {
 		setValor(event.target.value)
 	}
 
-	const handleTamanho = (event) => {
-		setTamanho(event.target.value)
+	const handleTamanhoLote = (event) => {
+		setTamanhoLote(event.target.value)
 	}
 
 	const handleEndereco = (event) => {
@@ -73,12 +110,16 @@ const PostLote = () => {
 		setCEP(event.target.value)
 	}
 
+    const handleTamanhoCasa = (event) => {
+		setTamanhoCasa(event.target.value)
+	}
+
 	return (
 		<div>
             <Navbar />
             <div className='signup'>
-                <h1>Adicionar lote</h1>
-                <form onSubmit={handleSubmit}>
+                <form className="loteForm" onSubmit={loteSubmit}>
+                    <h1>Adicionar lote</h1>
                     <label htmlFor="valor">Valor</label>
                     <br />
                     <input type="number" name="valor" placeholder="Insira o valor do lote" title="Insira o valor do lote" value={valor} onChange={handleValor}/>
@@ -86,7 +127,7 @@ const PostLote = () => {
                     <br />
                     <label htmlFor="tamanho">Tamanho</label>
                     <br />
-                    <input type="number" name="tamanho" placeholder="Insira o tamanho do lote" title="Insira o tamanho do lote" value={tamanho} onChange={handleTamanho}/>
+                    <input type="number" name="tamanho" placeholder="Insira o tamanho do lote" title="Insira o tamanho do lote" value={tamanhoLote} onChange={handleTamanhoLote}/>
                     <br />
                     <br />
                     <label htmlFor="endereco">Endereço</label>
@@ -101,9 +142,19 @@ const PostLote = () => {
                     <br />
                     <button type="submit">Adicionar lote</button>
                 </form>
+
+                <form className="casaForm" onSubmit={casaSubmit}>
+                    <h1>Adicionar casa</h1>
+                    <label htmlFor="tamanho">Tamanho</label>
+                    <br />
+                    <input type="number" name="tamanho" placeholder="Insira o tamanho da casa" title="Insira o tamanho da casa" value={tamanhoCasa} onChange={handleTamanhoCasa}/>
+                    <br />
+                    <br />
+                    <button type="submit">Adicionar Casa</button>
+                </form>
             </div>
 		</div>
-	);
-};
+	)
+}
 
-export default PostLote;
+export default PostLote

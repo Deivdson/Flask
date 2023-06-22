@@ -75,9 +75,9 @@ const Navbar = () => {
                 </li>
             </div>
         </div>
-			);
+			)
 		}
-	};
+	}
 
 	return (
 		<nav id='navigation'>
