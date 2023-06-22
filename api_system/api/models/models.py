@@ -39,7 +39,8 @@ class Lote(db.Model):
     __tablename__ = "lotes"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    valor = db.Column(db.Integer)
+    valor = db.Column(db.Numeric(precision=10, scale=2))
+    titulo = db.Column(db.Text)
     tamanho = db.Column(db.Integer)
     endereco = db.Column(db.Text)
     cep = db.Column(db.String)
@@ -47,8 +48,9 @@ class Lote(db.Model):
 
     user = db.relationship('User', foreign_keys=user_id)
 
-    def __init__(self, endereco, cep, valor, tamanho, user_id):
+    def __init__(self, titulo, endereco, cep, valor, tamanho, user_id):
         self.valor = valor
+        self.titulo = titulo
         self.endereco = endereco
         self.cep = cep
         self.tamanho = tamanho
@@ -59,7 +61,7 @@ class Lote(db.Model):
     
     def to_dict(self, columns=[]):
         if not columns:
-            return {"id":self.id, "endereco":self.endereco, "valor": self.valor, "cep":self.cep, "tamanho":self.tamanho, "user_id":self.user_id}
+            return {"id":self.id, "titulo":self.titulo, "endereco":self.endereco, "valor": self.valor, "cep":self.cep, "tamanho":self.tamanho, "user_id":self.user_id}
         else:
             return{col:getattr(self, col) for col in columns}
     
