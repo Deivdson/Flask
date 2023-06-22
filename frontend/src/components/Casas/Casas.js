@@ -13,13 +13,19 @@ import {
   TableContainer,
   Center 
 } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
+import api from '../../services'
 
 const Casas = () => {
     const [casas, setCasas] = useState([]);
 	const token = localStorage.getItem('token')
+	const navigate = useNavigate()
 	
+	const response = api.get('/casa/')
+	console.log(response.data)
     useEffect(() => {
 		const loadData = async (e) => {
+			const response = 
 			fetch(`http://localhost:5000/casa/`,{
 				method:'GET',
 			  	headers: {
@@ -29,6 +35,10 @@ const Casas = () => {
 				.then((casa) => casa.json())
 				.then((data) => setCasas(data))
 				.catch(err => console.error(err))
+				if(response.status == 403){
+					console.log(response)
+					navigate('/login/?error=realize-o-login')					
+				}				
 		    }
 		loadData()
 	})
