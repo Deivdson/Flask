@@ -12,7 +12,7 @@ const SignUp = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const navigate = useNavigate();
-    const [err, setErr] = useState(false);
+    const [setErr] = useState(false);
 
     async function handleSubmit(event) {
 		event.preventDefault();

@@ -40,6 +40,7 @@ const Lotes = () => {
 				<p>{lote.endereço}</p>
 				<p>{lote.cep}</p>
 				<p>{lote.tamanho}</p>
+
 				</div>
             ))}
 		</div>
