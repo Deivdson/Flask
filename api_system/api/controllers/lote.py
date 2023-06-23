@@ -25,6 +25,7 @@ def view(id,current_user):
 def add(current_user):
     data = request.get_json()
     valor = data.get('valor')
+    titulo = data.get('titulo')
     tamanho = data.get('tamanho')
     endereco = data.get('endereco')
     cep = data.get('cep')
@@ -33,6 +34,7 @@ def add(current_user):
     lote = Lote(
         valor=valor,
         tamanho=tamanho,
+        titulo=titulo,
         endereco=endereco,
         cep=cep,
         user_id=id

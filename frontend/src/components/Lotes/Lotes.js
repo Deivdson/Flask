@@ -32,25 +32,27 @@ const Lotes = () => {
 					navigate('/login/?error=realize-o-login')					
 
 				}
+
 		    }
-		loadData()		
-	})
-	
+		loadData()
+	}, [])
 
 	return (
 		<div id="lotes">
 			<Navbar />
-			<h3>Lotes</h3>
+			<h1>Lotes</h1>
             {lotes.map((lote) => (
-				<div key={lote.id}>
-				<p>{lote.endereço}</p>
-				<p>{lote.cep}</p>
-				<p>{lote.tamanho}</p>
-
-				</div>
+				<section className='boxcards' key={lote.id}>
+					<div>
+						<h4>{lote.endereço}</h4>
+						<h4>{lote.cep}</h4>
+						<h4>{lote.tamanho} metros</h4>
+						<h4>R$ {lote.valor},00</h4>
+					</div>
+				</section>
             ))}
 		</div>
-	);
-};
+	)
+}
 
 export default Lotes;
