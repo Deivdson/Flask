@@ -44,10 +44,12 @@ const Lotes = () => {
             {lotes.map((lote) => (
 				<section className='boxcards' key={lote.id}>
 					<div>
-						<h4>{lote.endereço}</h4>
-						<h4>{lote.cep}</h4>
-						<h4>{lote.tamanho} metros</h4>
-						<h4>R$ {lote.valor},00</h4>
+						<h4>{lote.titulo}</h4>
+						<h4>{lote.CEP}</h4>
+						<h4>{lote.rua}, {lote.numero}. {lote.bairro} - {lote.cidade}/{lote.estado}</h4>
+						<h4>{lote.complemento}</h4>
+						<h4>{lote.tamanho}m<sup>2</sup></h4>
+						<h4>R$ {lote.valor}</h4>
 					</div>
 				</section>
             ))}

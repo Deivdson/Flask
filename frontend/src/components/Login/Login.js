@@ -64,9 +64,9 @@ const Login = () => {
       <div className='login'>
         <h1>Entrar</h1>
         <form onSubmit={handleSubmit}>
-            <label htmlFor="email">Username</label>
+            <label htmlFor="email">Email</label>
             <br />
-            <input type="text" name="text" placeholder="Insira seu nome de usuario" title="Insira seu nome de usuário" value={username} onChange={handleUsername}/>
+            <input type="text" name="text" placeholder="Insira seu email" title="Insira seu email" value={username} onChange={handleUsername}/>
             <br />
             <br />
             <label htmlFor="password">Senha</label>

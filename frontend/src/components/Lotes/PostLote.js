@@ -7,9 +7,17 @@ import Navbar from '../Navbar/Navbar'
 
 const PostLote = () => {
     const [valor, setValor] = useState('')
+    const [titulo, setTitulo] = useState('')
     const [tamanhoLote, setTamanhoLote] = useState('')
-    const [endereco, setEndereco] = useState('')
+
     const [cep, setCEP] = useState('')
+    const [rua, setRua] = useState('')
+    const [numero, setNumero] = useState('')
+    const [bairro, setBairro] = useState('')
+    const [cidade, setCidade] = useState('')
+    const [estado, setEstado] = useState('')
+    const [complemento, setComplemento] = useState('')
+    
     const [tamanhoCasa, setTamanhoCasa] = useState('')
 
     const [lote, setLote] = useState([])
@@ -44,7 +52,7 @@ const PostLote = () => {
         }
 		loadData()
 	}, [])
-    
+
     async function loteSubmit(event) {
 		event.preventDefault()        
 		const request = await fetch('http://localhost:5000/lote/add', {
@@ -55,10 +63,16 @@ const PostLote = () => {
 			},
 			body: JSON.stringify({
 				valor,
-				tamanhoLote,
-                endereco,
-                cep,
-                usuario_id: usuario[usuario.length - 1].id
+                titulo,
+				tamanho: tamanhoLote,
+                rua,
+                CEP: cep,
+                numero,
+                bairro,
+                cidade,
+                estado,
+                complemento,
+                user_id: usuario[usuario.length - 1].id
 			})
 		})
 		if (request.ok) {
@@ -94,20 +108,63 @@ const PostLote = () => {
           }
 	}
 
+    function buscaCEP() {
+        const value = cep.replace(/[^0-9]+/, '')
+        fetch(`https://viacep.com.br/ws/${value}/json/`)
+        .then((response) => response.json())
+        .then((json) => {
+        if (json.logradouro) {
+            setRua(json.logradouro)
+            setBairro(json.bairro)
+            setCidade(json.localidade)
+            setEstado(json.uf)
+        } else {
+            alert(`Não existe localidade para o CEP informado. Erro: ${JSON.stringify(json.erro)}`)
+        }
+        })
+        .catch((error) => {
+        alert(`CEP inválido. ${error}`)
+        })
+    }
+
 	const handleValor = (event) => {
 		setValor(event.target.value)
+	}
+
+    const handleTitulo = (event) => {
+		setTitulo(event.target.value)
 	}
 
 	const handleTamanhoLote = (event) => {
 		setTamanhoLote(event.target.value)
 	}
 
-	const handleEndereco = (event) => {
-		setEndereco(event.target.value)
+    const handleCEP = (event) => {
+		setCEP(event.target.value)
 	}
 
-	const handleCEP = (event) => {
-		setCEP(event.target.value)
+	const handleRua = (event) => {
+		setRua(event.target.value)
+	}
+
+    const handleNumero = (event) => {
+		setNumero(event.target.value)
+	}
+
+    const handleBairro = (event) => {
+		setBairro(event.target.value)
+	}
+    
+    const handleCidade = (event) => {
+		setCidade(event.target.value)
+	}
+
+    const handleEstado = (event) => {
+		setEstado(event.target.value)
+	}
+
+    const handleComplemento = (event) => {
+		setComplemento(event.target.value)
 	}
 
     const handleTamanhoCasa = (event) => {
@@ -118,26 +175,56 @@ const PostLote = () => {
 		<div>
             <Navbar />
             <div className='signup'>
-                <form className="loteForm" onSubmit={loteSubmit}>
+                <form id="addForm" className="loteForm" onSubmit={loteSubmit} >
                     <h1>Adicionar lote</h1>
+                    <label htmlFor="titulo">Titulo</label>
+                    <br />
+                    <input type="text" name="titulo" id="titulo" placeholder="Insira um titulo para o lote" title="Insira um titulo para o lote" value={titulo} onChange={handleTitulo} required/>
+                    <br />
+                    <br />
                     <label htmlFor="valor">Valor</label>
                     <br />
-                    <input type="number" name="valor" placeholder="Insira o valor do lote" title="Insira o valor do lote" value={valor} onChange={handleValor}/>
+                    <input type="text" name="valor" placeholder="Insira o valor do lote" title="Insira o valor do lote" value={valor} onChange={handleValor} required/>
                     <br />
                     <br />
                     <label htmlFor="tamanho">Tamanho</label>
                     <br />
-                    <input type="number" name="tamanho" placeholder="Insira o tamanho do lote" title="Insira o tamanho do lote" value={tamanhoLote} onChange={handleTamanhoLote}/>
+                    <input type="text" name="tamanho" placeholder="Insira o tamanho do lote" title="Insira o tamanho do lote" value={tamanhoLote} onChange={handleTamanhoLote} required/>
                     <br />
                     <br />
-                    <label htmlFor="endereco">Endereço</label>
+                    <label htmlFor="cep">CEP</label>
                     <br />
-                    <input type="text" name="endereco" id="endereco" placeholder="Insira o endereço do lote" title="Insira o endereço do lote" value={endereco} onChange={handleEndereco}/>
+                    <input type="text" name="cep" id="cep" placeholder="Insira o CEP do lote" title="Insira o CEP do lote" value={cep} onChange={handleCEP} onBlur={buscaCEP} required/>
                     <br />
                     <br />
-                    <label htmlFor="endereco">CEP</label>
+                    <label htmlFor="rua">Rua</label>
                     <br />
-                    <input type="text" name="endereco" id="endereco" placeholder="Insira o CEP do lote" title="Insira o CEP do lote" value={cep} onChange={handleCEP}/>
+                    <input type="text" name="rua" id="rua" placeholder="Insira o rua do lote" title="Insira o rua do lote" value={rua} onChange={handleRua} required/>
+                    <br />
+                    <br />
+                    <label htmlFor="numero">Numero</label>
+                    <br />
+                    <input type="text" name="numero" id="numero" placeholder="Insira o numero do lote" title="Insira o numero do lote" value={numero} onChange={handleNumero} required/>
+                    <br />
+                    <br />
+                    <label htmlFor="bairro">Bairro</label>
+                    <br />
+                    <input type="text" name="bairro" id="bairro" placeholder="Insira o bairro do lote" title="Insira o bairro do lote" value={bairro} onChange={handleBairro} required/>
+                    <br />
+                    <br />
+                    <label htmlFor="cidade">Cidade</label>
+                    <br />
+                    <input type="text" name="cidade" id="cidade" placeholder="Insira a cidade do lote" title="Insira a cidade do lote" value={cidade} onChange={handleCidade} required/>
+                    <br />
+                    <br />
+                    <label htmlFor="estado">Estado</label>
+                    <br />
+                    <input type="text" name="estado" id="estado" placeholder="Insira o estado do lote" title="Insira o estado do lote" value={estado} onChange={handleEstado} required/>
+                    <br />
+                    <br />
+                    <label htmlFor="complemento">Complemento</label>
+                    <br />
+                    <input type="text" name="complemento" id="complemento" placeholder="Insira o complemento do lote" title="Insira o complemento do lote" value={complemento} onChange={handleComplemento}/>
                     <br />
                     <br />
                     <button type="submit">Adicionar lote</button>
@@ -147,7 +234,7 @@ const PostLote = () => {
                     <h1>Adicionar casa</h1>
                     <label htmlFor="tamanho">Tamanho</label>
                     <br />
-                    <input type="number" name="tamanho" placeholder="Insira o tamanho da casa" title="Insira o tamanho da casa" value={tamanhoCasa} onChange={handleTamanhoCasa}/>
+                    <input type="text" name="tamanho" placeholder="Insira o tamanho da casa" title="Insira o tamanho da casa" value={tamanhoCasa} onChange={handleTamanhoCasa}/>
                     <br />
                     <br />
                     <button type="submit">Adicionar Casa</button>

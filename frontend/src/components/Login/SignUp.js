@@ -42,7 +42,7 @@ const SignUp = () => {
     if (request.status === 200) {
       console.log("Setando token")
 			localStorage.setItem('token', response.token);
-			navigate('/');
+			navigate('/login');
 		}
 		if (request.status === 401) {
 			setErr(true)
