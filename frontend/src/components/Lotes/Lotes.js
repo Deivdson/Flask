@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom'
 
 const Lotes = () => {
     const [lotes, setLotes] = useState([]);
+	const [error, setError] = useState([]);
+    const [loading, setLoading] = useState([]);
 	const navigate = useNavigate();
 	const token = localStorage.getItem('token')
 		
@@ -19,10 +21,14 @@ const Lotes = () => {
 				}
 			})
 				.then((lote) => lote.json())
-				.then((data) => {setLotes(data); console.log(data)})				
-				.catch(err => console.error(err))
-				if(response && response.status == 403){
-					console.log(response)
+				.then((data) => setLotes(data))				
+				.catch(err =>{
+					console.error("Falha ao realizar fetch",err);
+					setError(err)
+				}).finally(() => {
+					setLoading(false)
+				})
+				if(response && response.status == 403 || !token){					
 					navigate('/login/?error=realize-o-login')					
 
 				}
