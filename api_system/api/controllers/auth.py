@@ -11,7 +11,7 @@ app = Blueprint("auth", __name__)
 def register():
     if request.method == 'POST':
         username =  request.json['username']
-        nome =      request.json['username']
+        nome =      request.json['name']
         email =     request.json['email']
         password =  request.json['password']
         user = User(
@@ -35,7 +35,7 @@ def login():
         }), 403
     payload = {
         "id": user.id,
-        "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=30),        
+        "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=20),        
     }
 
     token = jwt.encode(payload, api.app.config['SECRET_KEY'])

@@ -27,16 +27,26 @@ def add(current_user):
     valor = data.get('valor')
     titulo = data.get('titulo')
     tamanho = data.get('tamanho')
-    endereco = data.get('endereco')
-    cep = data.get('cep')
-    id = data.get('usuario_id')
+    rua = data.get('rua')
+    CEP = data.get('CEP')
+    numero = data.get('numero')
+    bairro = data.get('bairro')
+    cidade = data.get('cidade')
+    estado = data.get('estado')
+    complemento = data.get('complemento')
+    id = data.get('user_id')
     
     lote = Lote(
         valor=valor,
         tamanho=tamanho,
         titulo=titulo,
-        endereco=endereco,
-        cep=cep,
+        rua=rua,
+        CEP=CEP,
+        numero=numero,
+        bairro=bairro,
+        cidade=cidade,
+        estado=estado,
+        complemento=complemento,
         user_id=id
     )
     db.session.add(lote)

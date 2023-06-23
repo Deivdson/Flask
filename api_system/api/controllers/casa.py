@@ -5,7 +5,6 @@ import json
 
 app = Blueprint("casas", __name__)
 
-
 @app.route('/')
 @jwt_required
 def index(current_user):

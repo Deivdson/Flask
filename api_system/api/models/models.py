@@ -39,21 +39,31 @@ class Lote(db.Model):
     __tablename__ = "lotes"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    valor = db.Column(db.Numeric(precision=10, scale=2))
-    titulo = db.Column(db.Text)
-    tamanho = db.Column(db.Integer)
-    endereco = db.Column(db.Text)
-    cep = db.Column(db.String)
+    valor = db.Column(db.String)
+    tamanho = db.Column(db.String)
+    titulo = db.Column(db.String)
+    rua = db.Column(db.String)
+    CEP = db.Column(db.String)
+    numero = db.Column(db.String)
+    bairro = db.Column(db.String)
+    cidade = db.Column(db.String)
+    estado = db.Column(db.String)
+    complemento = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     user = db.relationship('User', foreign_keys=user_id)
 
-    def __init__(self, titulo, endereco, cep, valor, tamanho, user_id):
+    def __init__(self, titulo, valor, tamanho, rua, numero, CEP, bairro, cidade, estado, complemento, user_id):
         self.valor = valor
         self.titulo = titulo
-        self.endereco = endereco
-        self.cep = cep
         self.tamanho = tamanho
+        self.CEP = CEP
+        self.rua = rua
+        self.bairro = bairro
+        self.numero = numero
+        self.cidade = cidade
+        self.estado = estado
+        self.complemento = complemento
         self.user_id = user_id
     
     def __repr__(self):
@@ -61,15 +71,15 @@ class Lote(db.Model):
     
     def to_dict(self, columns=[]):
         if not columns:
-            return {"id":self.id, "titulo":self.titulo, "endereco":self.endereco, "valor": self.valor, "cep":self.cep, "tamanho":self.tamanho, "user_id":self.user_id}
+            return {"id":self.id, "titulo":self.titulo, "valor": self.valor, "tamanho":self.tamanho, "rua":self.rua, "numero":self.numero, "bairro": self.bairro, "CEP":self.CEP, "cidade":self.cidade, "complemento": self.complemento, "estado": self.estado, "user_id":self.user_id}
         else:
             return{col:getattr(self, col) for col in columns}
-    
+
 class Casa(db.Model):
     __tablename__ = "casas"
     
     id = db.Column(db.Integer, primary_key=True)
-    tamanho = db.Column(db.Integer)
+    tamanho = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     lote_id = db.Column(db.Integer, db.ForeignKey('lotes.id'))
 
