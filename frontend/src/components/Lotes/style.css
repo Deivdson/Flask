@@ -23,6 +23,10 @@
 }
 
 .boxcards {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFdMRNVjQnOT8T11CuukX2Mpx6inK1_FvFXA&usqp=CAU');
+    background-size: cover;
+    background-color: rgba(101, 98, 227, 0.8);
+    background-blend-mode: color;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,9 +37,7 @@
     left: 2rem;
     margin-top: 10px;
     padding: 80px;
-    background-color: #4682b4;
-    width: 78%;
-    border: solid red 1px;
+    width: 10%;
 }
 
 .boxcards:hover {
@@ -45,4 +47,20 @@
 .boxcards h4 {
     color: white;
     text-align: left;
+}
+
+.boxflex {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.actionsflex {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.actions {
+    padding: 8px;
 }

@@ -37,22 +37,48 @@ const Lotes = () => {
 		loadData()
 	}, [])
 
+	const handleDelete = async (id) => {
+		const request = await fetch(`http://localhost:5000/lote/delete/${id}`, {
+			method: 'DELETE',
+			headers: {
+				'authorization':`Bearer ${token}`
+			}
+		})
+		if (request.ok) {
+            console.log('Solicitação bem-sucedida')
+            console.log('Status do código:', request.status)
+			alert('Lote deletado com sucesso!')
+			navigate('/lotes')
+          } else {
+            console.log('Erro na solicitação')
+            console.log('Status do código:', request.status)
+          }
+		navigate('/lotes')
+	}
+
+
 	return (
 		<div id="lotes">
 			<Navbar />
 			<h1>Lotes</h1>
-            {lotes.map((lote) => (
+			<div className='boxflex'>
+			{lotes.map((lote) => (
 				<section className='boxcards' key={lote.id}>
 					<div>
 						<h4>{lote.titulo}</h4>
 						<h4>{lote.CEP}</h4>
-						<h4>{lote.rua}, {lote.numero}. {lote.bairro} - {lote.cidade}/{lote.estado}</h4>
+						<h4>{lote.rua}, {lote.numero} - {lote.bairro} {lote.cidade}/{lote.estado}</h4>
 						<h4>{lote.complemento}</h4>
 						<h4>{lote.tamanho}m<sup>2</sup></h4>
 						<h4>R$ {lote.valor}</h4>
 					</div>
+					<div className='actionsflex'>
+					<button className='actions' onClick={() => handleDelete(lote.id)}>Excluir</button>
+					<button className='actions'>Editar</button>
+					</div>
 				</section>
             ))}
+			</div>
 		</div>
 	)
 }
