@@ -73,8 +73,8 @@ const Lotes = () => {
 						<h4>R$ {lote.valor}</h4>
 					</div>
 					<div className='actionsflex'>
-					<button className='actions' onClick={() => handleDelete(lote.id)}>Excluir</button>
-					<button className='actions'>Editar</button>
+						<button className='actions' onClick={() => handleDelete(lote.id)}>Excluir</button>
+						<button className='actions'><a href={`/editar-lote/${lote.id}`}>Editar</a></button>
 					</div>
 				</section>
             ))}

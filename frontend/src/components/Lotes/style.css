@@ -64,3 +64,8 @@
 .actions {
     padding: 8px;
 }
+
+.actions a {
+    text-decoration: none;
+    color: black;
+}
