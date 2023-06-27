@@ -6,18 +6,17 @@ import { useNavigate } from 'react-router-dom'
 
 const Lotes = () => {
     const [lotes, setLotes] = useState([]);
-	const [casas, setCasas] = useState([]);
-	const [error, setError] = useState([]);
-    const [loading, setLoading] = useState([]);
+	const [setError] = useState([]);
+    const [setLoading] = useState([]);
 	const navigate = useNavigate();
 	const token = localStorage.getItem('token')
-		
+	
     useEffect(() => {
 		const loadData = async (e) => {
 			const response = await fetch(`http://localhost:5000/lote/`, {				
 			 	method:'GET',
 			  	headers: {
-					'authorization':`Bearer ${token}`
+					'authorization':`Bearer ${localStorage.getItem('token')}`
 				}
 			})
 				.then((lote) => lote.json())
@@ -28,27 +27,10 @@ const Lotes = () => {
 				}).finally(() => {
 					setLoading(false)
 				})
-				if(response && response.status == 403 || !token){					
-					navigate('/login/?error=realize-o-login')					
-
-				}
-			
-			const responseCasa = await fetch(`http://localhost:5000/casa/`, {				
-				method:'GET',
-					headers: {
-					'authorization':`Bearer ${token}`
-				}
-			})
-				.then((casa) => casa.json())
-				.then((data) => setCasas(data))
-				.catch(err => {
-					console.error("Falha ao realizar fetch",err);
-					setError(err)
-				}) .finally(() => setLoading(false))
-				if(responseCasa && responseCasa.status == 403 || !token) navigate('/login/?error=realize-o-login')
+				if((response && response.status === 403) || !localStorage.getItem('token')) navigate('/login/?error=realize-o-login')
 		    }
-
 		loadData()
+		// eslint-disable-next-line
 	}, [])
 
 	const handleDelete = async (id) => {
