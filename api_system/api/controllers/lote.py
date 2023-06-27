@@ -7,8 +7,7 @@ app = Blueprint("lotes", __name__)
 
 
 @app.route('/')
-@jwt_required
-def index(current_user):
+def index():
     lotes = Lote.query.all()
     result = [u.to_dict() for u in lotes]
     return Response(response=json.dumps(result), status=200, content_type="application/json")
@@ -51,20 +50,26 @@ def add(current_user):
     )
     db.session.add(lote)
     db.session.commit()
-    return jsonify({'status': 'success', 'message': 'Lote added successfully'})    
+    return jsonify({'status': 'success', 'message': 'Lote added successfully'})
 
-@app.route('/edit/<int:id>', methods=['PUT', 'POST'])
+@app.route('/edit/<int:id>', methods=['PUT'])
 @jwt_required
 def edit(id, current_user):
     data = request.get_json()
     lote = Lote.query.get(id)
-    lote.valor =        data.get('valor')
-    lote.endereco =     data.get('endereco')
-    lote.cep =          data.get('cep')
-    lote.tamanho =      data.get('tamanho')
-    lote.user_id =      data.get('user_id')
+    lote.valor = data.get('valor')
+    lote.titulo = data.get('titulo')
+    lote.tamanho = data.get('tamanho')
+    lote.rua = data.get('rua')
+    lote.CEP = data.get('CEP')
+    lote.numero = data.get('numero')
+    lote.bairro = data.get('bairro')
+    lote.cidade = data.get('cidade')
+    lote.estado = data.get('estado')
+    lote.complemento = data.get('complemento')
+    lote.id = data.get('user_id')
     db.session.commit()
-    return Response(response=json.dumps(lote.to_dict()), status=200, content_type="application/json")
+    return jsonify({'status': 'success', 'message': 'Lote added successfully'})
 
 @app.route('/delete/<int:id>', methods=['GET', 'DELETE'])
 @jwt_required

@@ -18,8 +18,6 @@ const EditLote = () => {
     const [cidade, setCidade] = useState('')
     const [estado, setEstado] = useState('')
     const [complemento, setComplemento] = useState('')
-    
-    const [tamanhoCasa, setTamanhoCasa] = useState('')
 
     const [lote, setLote] = useState([])
     const [usuario, setUsuario] = useState([])
@@ -81,7 +79,7 @@ const EditLote = () => {
 		if (request.ok) {
             console.log('Solicitação bem-sucedida')
             console.log('Status do código:', request.status)
-            alert('Lote cadastrado com sucesso')
+            alert('Lote editado com sucesso')
           } else {
             console.log('Erro na solicitação')
             console.log('Status do código:', request.status)
