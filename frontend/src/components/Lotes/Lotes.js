@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom'
 
 const Lotes = () => {
     const [lotes, setLotes] = useState([]);
-	const [setError] = useState([]);
-    const [setLoading] = useState([]);
+	const [erro, setError] = useState([]);
+    const [loading, setLoading] = useState([]);
 	const navigate = useNavigate();
 	const token = localStorage.getItem('token')
 	
