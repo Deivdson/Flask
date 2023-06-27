@@ -102,6 +102,7 @@ const PostLote = () => {
 		if (request.ok) {
             console.log('Solicitação bem-sucedida')
             console.log('Status do código:', request.status)
+            alert('Casa cadastrado com sucesso')
           } else {
             console.log('Erro na solicitação')
             console.log('Status do código:', request.status)
@@ -118,13 +119,9 @@ const PostLote = () => {
             setBairro(json.bairro)
             setCidade(json.localidade)
             setEstado(json.uf)
-        } else {
-            alert(`Não existe localidade para o CEP informado. Erro: ${JSON.stringify(json.erro)}`)
-        }
+        } else alert(`Não existe localidade para o CEP informado. Erro: ${JSON.stringify(json.erro)}`)
         })
-        .catch((error) => {
-        alert(`CEP inválido. ${error}`)
-        })
+        .catch((error) => alert(`CEP inválido. ${error}`))
     }
 
 	const handleValor = (event) => {
@@ -177,67 +174,72 @@ const PostLote = () => {
             <div className='signup'>
                 <form id="addForm" className="loteForm" onSubmit={loteSubmit} >
                     <h1>Adicionar lote</h1>
-                    <label htmlFor="titulo">Titulo</label>
-                    <br />
-                    <input type="text" name="titulo" id="titulo" placeholder="Insira um titulo para o lote" title="Insira um titulo para o lote" value={titulo} onChange={handleTitulo} required/>
-                    <br />
-                    <br />
-                    <label htmlFor="valor">Valor</label>
-                    <br />
-                    <input type="text" name="valor" placeholder="Insira o valor do lote" title="Insira o valor do lote" value={valor} onChange={handleValor} required/>
-                    <br />
-                    <br />
-                    <label htmlFor="tamanho">Tamanho</label>
-                    <br />
-                    <input type="text" name="tamanho" placeholder="Insira o tamanho do lote" title="Insira o tamanho do lote" value={tamanhoLote} onChange={handleTamanhoLote} required/>
-                    <br />
-                    <br />
-                    <label htmlFor="cep">CEP</label>
-                    <br />
-                    <input type="text" name="cep" id="cep" placeholder="Insira o CEP do lote" title="Insira o CEP do lote" value={cep} onChange={handleCEP} onBlur={buscaCEP} required/>
-                    <br />
-                    <br />
-                    <label htmlFor="rua">Rua</label>
-                    <br />
-                    <input type="text" name="rua" id="rua" placeholder="Insira o rua do lote" title="Insira o rua do lote" value={rua} onChange={handleRua} required/>
-                    <br />
-                    <br />
-                    <label htmlFor="numero">Numero</label>
-                    <br />
-                    <input type="text" name="numero" id="numero" placeholder="Insira o numero do lote" title="Insira o numero do lote" value={numero} onChange={handleNumero} required/>
-                    <br />
-                    <br />
-                    <label htmlFor="bairro">Bairro</label>
-                    <br />
-                    <input type="text" name="bairro" id="bairro" placeholder="Insira o bairro do lote" title="Insira o bairro do lote" value={bairro} onChange={handleBairro} required/>
-                    <br />
-                    <br />
-                    <label htmlFor="cidade">Cidade</label>
-                    <br />
-                    <input type="text" name="cidade" id="cidade" placeholder="Insira a cidade do lote" title="Insira a cidade do lote" value={cidade} onChange={handleCidade} required/>
-                    <br />
-                    <br />
-                    <label htmlFor="estado">Estado</label>
-                    <br />
-                    <input type="text" name="estado" id="estado" placeholder="Insira o estado do lote" title="Insira o estado do lote" value={estado} onChange={handleEstado} required/>
-                    <br />
-                    <br />
-                    <label htmlFor="complemento">Complemento</label>
-                    <br />
-                    <input type="text" name="complemento" id="complemento" placeholder="Insira o complemento do lote" title="Insira o complemento do lote" value={complemento} onChange={handleComplemento}/>
-                    <br />
-                    <br />
-                    <button type="submit">Adicionar lote</button>
+                    <div className='form-grid-1'>
+                        <label htmlFor="titulo">Titulo</label>
+                        <br />
+                        <input type="text" name="titulo" id="titulo" placeholder="Insira um titulo para o lote" title="Insira um titulo para o lote" value={titulo} onChange={handleTitulo} required/>
+                        <br />
+                        <br />
+                        <label htmlFor="valor">Valor</label>
+                        <br />
+                        <input type="text" name="valor" placeholder="Insira o valor do lote" title="Insira o valor do lote" value={valor} onChange={handleValor} required/>
+                        <br />
+                        <br />
+                        <label htmlFor="tamanho">Tamanho</label>
+                        <br />
+                        <input type="text" name="tamanho" placeholder="Insira o tamanho do lote" title="Insira o tamanho do lote" value={tamanhoLote} onChange={handleTamanhoLote} required/>
+                        <br />
+                        <br />
+                        <label htmlFor="cep">CEP</label>
+                        <br />
+                        <input type="text" name="cep" id="cep" placeholder="Insira o CEP do lote" title="Insira o CEP do lote" value={cep} onChange={handleCEP} onBlur={buscaCEP} required/>
+                        <br />
+                        <br />
+                        <label htmlFor="rua">Rua</label>
+                        <br />
+                        <input type="text" name="rua" id="rua" placeholder="Insira o rua do lote" title="Insira o rua do lote" value={rua} onChange={handleRua} required/>
+                        <br />
+                        <br />
+                    </div>
+                    <div className='form-grid-2'>
+                        <label htmlFor="numero">Numero</label>
+                        <br />
+                        <input type="text" name="numero" id="numero" placeholder="Insira o numero do lote" title="Insira o numero do lote" value={numero} onChange={handleNumero} required/>
+                        <br />
+                        <br />
+                        <label htmlFor="bairro">Bairro</label>
+                        <br />
+                        <input type="text" name="bairro" id="bairro" placeholder="Insira o bairro do lote" title="Insira o bairro do lote" value={bairro} onChange={handleBairro} required/>
+                        <br />
+                        <br />
+                        <label htmlFor="cidade">Cidade</label>
+                        <br />
+                        <input type="text" name="cidade" id="cidade" placeholder="Insira a cidade do lote" title="Insira a cidade do lote" value={cidade} onChange={handleCidade} required/>
+                        <br />
+                        <br />
+                        <label htmlFor="estado">Estado</label>
+                        <br />
+                        <input type="text" name="estado" id="estado" placeholder="Insira o estado do lote" title="Insira o estado do lote" value={estado} onChange={handleEstado} required/>
+                        <br />
+                        <br />
+                        <label htmlFor="complemento">Complemento</label>
+                        <br />
+                        <input type="text" name="complemento" id="complemento" placeholder="Insira o complemento do lote" title="Insira o complemento do lote" value={complemento} onChange={handleComplemento}/>
+                        <br />
+                        <br />
+                    </div>
+                    <button className='btnLote' type="submit">Adicionar lote</button>
                 </form>
-
                 <form className="casaForm" onSubmit={casaSubmit}>
-                    <h1>Adicionar casa</h1>
-                    <label htmlFor="tamanho">Tamanho</label>
-                    <br />
-                    <input type="text" name="tamanho" placeholder="Insira o tamanho da casa" title="Insira o tamanho da casa" value={tamanhoCasa} onChange={handleTamanhoCasa}/>
-                    <br />
-                    <br />
-                    <button type="submit">Adicionar Casa</button>
+                    <div className='form-grid-3'>
+                        <h1>Adicionar casa</h1>
+                        <label htmlFor="tamanho">Tamanho</label>
+                        <br />
+                        <input type="text" name="tamanho" placeholder="Insira o tamanho da casa" title="Insira o tamanho da casa" value={tamanhoCasa} onChange={handleTamanhoCasa}/>
+                        <br />
+                        <br />
+                        <button type="submit">Adicionar Casa</button>
+                    </div>
                 </form>
             </div>
 		</div>

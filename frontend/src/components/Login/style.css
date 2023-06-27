@@ -14,7 +14,7 @@ form input {
     padding: 1.4rem 8rem 1.4rem 1.8rem;
     border-radius: 30px;
     border-color: #B5443B;
-    border-style: double;
+    border-style: solid;
 }
 
 form button {
