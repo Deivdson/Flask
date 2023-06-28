@@ -6,8 +6,7 @@ import json
 app = Blueprint("casas", __name__)
 
 @app.route('/')
-@jwt_required
-def index(current_user):
+def index():
     casas = Casa.query.all()
     result = [u.to_dict() for u in casas]
     return Response(response=json.dumps(result), status=200, content_type="application/json")

@@ -66,6 +66,7 @@ const Lotes = () => {
 						<h4>{lote.complemento}</h4>
 						<h4>{lote.tamanho}m<sup>2</sup></h4>
 						<h4>R$ {lote.valor}</h4>
+						<h4>Tem casa? {lote.tem_casa ? `${lote.tamanho_casa}m²` : "Não"}</h4>
 					</div>
 					<div className='actionsflex'>
 						<button className='actions' onClick={() => handleDelete(lote.id)}>Excluir</button>

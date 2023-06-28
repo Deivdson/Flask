@@ -52,6 +52,7 @@ class Lote(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     user = db.relationship('User', foreign_keys=user_id)
+    casa = db.relationship('Casa', uselist=False)
 
     def __init__(self, titulo, valor, tamanho, rua, numero, CEP, bairro, cidade, estado, complemento, user_id):
         self.valor = valor
@@ -71,9 +72,25 @@ class Lote(db.Model):
     
     def to_dict(self, columns=[]):
         if not columns:
-            return {"id":self.id, "titulo":self.titulo, "valor": self.valor, "tamanho":self.tamanho, "rua":self.rua, "numero":self.numero, "bairro": self.bairro, "CEP":self.CEP, "cidade":self.cidade, "complemento": self.complemento, "estado": self.estado, "user_id":self.user_id}
+            return {"id":self.id, 
+                    "titulo":self.titulo, 
+                    "valor": self.valor, 
+                    "tamanho":self.tamanho, 
+                    "rua":self.rua, 
+                    "numero":self.numero, 
+                    "bairro": self.bairro, 
+                    "CEP":self.CEP, 
+                    "cidade":self.cidade, 
+                    "complemento": self.complemento, 
+                    "estado": self.estado, 
+                    "user_id":self.user_id, 
+                    "tem_casa": self.has_casa(), 
+                    "tamanho_casa": self.casa.tamanho if self.has_casa() else None}
         else:
             return{col:getattr(self, col) for col in columns}
+    
+    def has_casa(self):
+        return self.casa is not None
 
 class Casa(db.Model):
     __tablename__ = "casas"
