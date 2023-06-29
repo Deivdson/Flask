@@ -88,7 +88,7 @@ const PostLote = () => {
     async function casaSubmit(event) {
 		event.preventDefault()
         console.log(usuario[usuario.length - 1].id)
-        console.log(lote[lote.length - 1].id)
+        console.log(lote)
 		const request = await fetch('http://localhost:5000/casa/add', {
 			method: 'POST',
 			headers: {
@@ -97,8 +97,8 @@ const PostLote = () => {
 			},
 			body: JSON.stringify({
 				tamanho: tamanhoCasa,
-                user_id: usuario[usuario.length - 1].id,
-                lote_id: lote[lote.length - 1].id
+                user: usuario[usuario.length - 1].id,
+                lote: lote[lote.length - 1].id
 			})
 		})
 		if (request.ok) {

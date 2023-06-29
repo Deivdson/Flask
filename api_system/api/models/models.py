@@ -52,8 +52,7 @@ class Lote(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     user = db.relationship('User', foreign_keys=user_id)
-    casa = db.relationship('Casa', uselist=False)
-
+    
     def __init__(self, titulo, valor, tamanho, rua, numero, CEP, bairro, cidade, estado, complemento, user_id):
         self.valor = valor
         self.titulo = titulo
@@ -83,14 +82,9 @@ class Lote(db.Model):
                     "cidade":self.cidade, 
                     "complemento": self.complemento, 
                     "estado": self.estado, 
-                    "user_id":self.user_id, 
-                    "tem_casa": self.has_casa(), 
-                    "tamanho_casa": self.casa.tamanho if self.has_casa() else None}
+                    "user_id":self.user_id}
         else:
             return{col:getattr(self, col) for col in columns}
-    
-    def has_casa(self):
-        return self.casa is not None
 
 class Casa(db.Model):
     __tablename__ = "casas"

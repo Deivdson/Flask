@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Lotes = () => {
     const [lotes, setLotes] = useState([]);
+	const [casas, setCasas] = useState([]);
 	const [erro, setError] = useState([]);
     const [loading, setLoading] = useState([]);
 	const navigate = useNavigate();
@@ -28,6 +29,14 @@ const Lotes = () => {
 					setLoading(false)
 				})
 				if((response && response.status === 403) || !localStorage.getItem('token')) navigate('/login/?error=realize-o-login')
+
+			const responseCasa = await fetch(`http://localhost:5000/casa/`, {				
+			method:'GET',
+			headers: {
+				'authorization':`Bearer ${localStorage.getItem('token')}`
+			}})
+			.then((casa) => casa.json())
+			.then((data) => setCasas(data))
 		    }
 		loadData()
 		// eslint-disable-next-line
@@ -66,7 +75,9 @@ const Lotes = () => {
 						<h4>{lote.complemento}</h4>
 						<h4>{lote.tamanho}m<sup>2</sup></h4>
 						<h4>R$ {lote.valor}</h4>
-						<h4>Tem casa? {lote.tem_casa ? `${lote.tamanho_casa}m²` : "Não"}</h4>
+						{casas.map((casa) => (
+                			<h4>Tem casa? {lote.id === casa.id ? `Sim, ${casa.tamanho}m²` : "Não"}</h4>
+            			))}
 					</div>
 					<div className='actionsflex'>
 						<button className='actions' onClick={() => handleDelete(lote.id)}>Excluir</button>
