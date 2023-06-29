@@ -24,7 +24,7 @@
 .boxcards {
     background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFdMRNVjQnOT8T11CuukX2Mpx6inK1_FvFXA&usqp=CAU');
     background-size: cover;
-    background-color: rgba(101, 98, 227, 0.8);
+    background-color: rgba(0, 0, 0, 0.7);
     background-blend-mode: color;
     display: flex;
     flex-direction: column;
@@ -40,7 +40,7 @@
 }
 
 .boxcards:hover {
-    box-shadow: 0 0 11px rgba(33,33,33,.2);
+    box-shadow: 0 0 11px rgba(33,33,33, .2);
 }
 
 .boxcards h4 {

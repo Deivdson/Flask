@@ -2,7 +2,7 @@ import './style.css'
 
 const Navbar = () => {
     const idNavbar = localStorage.getItem('token')
-    const user = localStorage.getItem('username')
+    const user = localStorage.getItem('name')
 
 	function Sair() {
 		localStorage.removeItem('token')

@@ -26,6 +26,16 @@
     position: absolute;
     right: 9rem;
     list-style-type: none;
+    height: 45px;
+    width: 90px;
+    border-radius: 20px;
+    padding: 7px;
+    background-color: rgb(133, 49, 43); /* Valor escurecido */
+    cursor: pointer;
+}
+
+.login-menu:hover {
+  border-radius: 30px;
 }
 
 .dropdown {

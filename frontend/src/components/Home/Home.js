@@ -13,7 +13,6 @@ const Home = () => {
 			</div>
 			<div className='options'>
                 <h4><a href="/lotes">Lotes</a></h4>
-                <h4><a href="/casas">Casas</a></h4>
 			</div>
 		</div>
 	);
