@@ -1,0 +1,144 @@
+#lotes h1,
+.postLotes h1 {
+    position: absolute;
+    top: 8rem;
+    left: 2rem;
+}
+
+.casaForm {
+    position: relative;
+    top: -600px;
+}
+
+.loteForm h1 {
+    position: relative;
+    top: -60px;
+    left: -200px;
+}
+
+.casaForm h1 {
+    position: relative;
+    top: -60px;
+}
+
+.boxcards {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFdMRNVjQnOT8T11CuukX2Mpx6inK1_FvFXA&usqp=CAU');
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.7);
+    background-blend-mode: color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    top: 10rem;
+    left: 2rem;
+    margin-top: 10px;
+    padding: 80px;
+    width: 25%;
+}
+
+.boxcards:hover {
+    box-shadow: 0 0 11px rgba(33,33,33, .2);
+}
+
+.boxcards h4 {
+    color: white;
+    text-align: left;
+}
+
+.boxcards p {
+    color: white;
+    text-align: left;
+    font-size: 15px;
+}
+
+.form-grid-1 {
+    position: relative;
+    left: -25rem;
+    z-index: 1;
+}
+
+.form-grid-2 {
+    position: relative;
+    top: -32.2rem;
+}
+
+.form-grid-3 {
+    position: relative;
+    top: -38.2rem;
+    left: 25rem;
+}
+
+.boxflex {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.actionsflex {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    position: relative;
+    top: 15%;
+    left: 30%;
+}
+
+.actions {
+    padding: 12px;
+    background-color: #B5443B;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.actions a {
+    text-decoration: none;
+    color: white;
+}
+
+.actions:hover {
+    background-color: rgb(133, 49, 43);
+}
+
+.btnLote {
+    position: relative;
+    top: -30rem;
+    left: -12.5rem;
+}
+
+.titulo {
+    font-size: 1.7rem;
+    position: relative;
+    top: -50px;
+    left: -40px;
+    width: fit-content;
+}
+
+.endereco {
+    position: relative;
+    top: -10px;
+    left: -40px;
+    padding: 2px;
+}
+
+.tamanho {
+    position: relative;
+    left: -40px;
+    padding: 2px;
+}
+
+.valor {
+    position: relative;
+    left: -40px;
+    top: 10px;
+}
+
+.temCasa {
+    position: relative;
+    left: -40px;
+    top: 20px;
+}

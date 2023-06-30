@@ -1,4 +1,5 @@
-from flask import Blueprint, request, Response
+from flask import Blueprint, request, Response, jsonify
+from ..utils.authenticate import jwt_required
 from ..models.models import db, Lote
 import json
 
@@ -12,37 +13,67 @@ def index():
     return Response(response=json.dumps(result), status=200, content_type="application/json")
 
 @app.route('/view/<int:id>', methods=['GET'])
-def view(id):
+@jwt_required
+def view(id,current_user):
     lote = Lote.query.get(id)
     #row = db.session.execute("select * from lotes where id = %s" % id).fetchone()
     return Response(response=json.dumps(lote.to_dict()), status=200, content_type="application/json")
 
 @app.route('/add', methods=['POST'])
-def add():    
+@jwt_required
+def add(current_user):
+    data = request.get_json()
+    valor = data.get('valor')
+    titulo = data.get('titulo')
+    tamanho = data.get('tamanho')
+    rua = data.get('rua')
+    CEP = data.get('CEP')
+    numero = data.get('numero')
+    bairro = data.get('bairro')
+    cidade = data.get('cidade')
+    estado = data.get('estado')
+    complemento = data.get('complemento')
+    id = data.get('user_id')
+    
     lote = Lote(
-        request.form['valor'],
-        request.form['endereco'],
-        request.form['cep'],
-        request.form['tamanho'],
-        request.form['user_id']
-        )
+        valor=valor,
+        tamanho=tamanho,
+        titulo=titulo,
+        rua=rua,
+        CEP=CEP,
+        numero=numero,
+        bairro=bairro,
+        cidade=cidade,
+        estado=estado,
+        complemento=complemento,
+        user_id=id
+    )
     db.session.add(lote)
     db.session.commit()
-    return Response(response=json.dumps({'status':'sucess', 'data':lote.to_dict()}), status=200, content_type="application/json")
+    return jsonify({'status': 'success', 'message': 'Lote added successfully'})
 
-@app.route('/edit/<int:id>', methods=['PUT', 'POST'])
-def edit(id):
+@app.route('/edit/<int:id>', methods=['PUT'])
+@jwt_required
+def edit(id, current_user):
+    data = request.get_json()
     lote = Lote.query.get(id)
-    lote.valor = request.form['valor']
-    lote.endereco = request.form['endereco']
-    lote.cep =      request.form['cep']
-    lote.tamanho =       request.form['tamanho']
-    lote.user_id =  request.form['user_id']
+    lote.valor = data.get('valor')
+    lote.titulo = data.get('titulo')
+    lote.tamanho = data.get('tamanho')
+    lote.rua = data.get('rua')
+    lote.CEP = data.get('CEP')
+    lote.numero = data.get('numero')
+    lote.bairro = data.get('bairro')
+    lote.cidade = data.get('cidade')
+    lote.estado = data.get('estado')
+    lote.complemento = data.get('complemento')
+    lote.id = data.get('user_id')
     db.session.commit()
-    return Response(response=json.dumps(lote.to_dict()), status=200, content_type="application/json")
+    return jsonify({'status': 'success', 'message': 'Lote added successfully'})
 
 @app.route('/delete/<int:id>', methods=['GET', 'DELETE'])
-def delete(id):
+@jwt_required
+def delete(id, current_user):
     lote = Lote.query.get(id)
     db.session.delete(lote)
     db.session.commit()

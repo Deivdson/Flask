@@ -1,0 +1,25 @@
+.f-input{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 13px 27px;
+    gap: 10px;
+
+    width: 580px;
+    height: 50px;
+
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+
+
+    /* Inside auto layout */
+}
+.f-label{
+    margin-top: 5rem;
+}
+.tabela{
+    margin-top: 5rem;
+}
+.corpo{
+    display: flex;
+}
