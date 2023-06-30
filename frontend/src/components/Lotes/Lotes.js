@@ -69,14 +69,20 @@ const Lotes = () => {
 			{lotes.map((lote) => (
 				<section className='boxcards' key={lote.id}>
 					<div>
-						<h4>{lote.titulo}</h4>
-						<h4>{lote.CEP}</h4>
-						<h4>{lote.rua}, {lote.numero} - {lote.bairro} {lote.cidade}/{lote.estado}</h4>
-						<h4>{lote.complemento}</h4>
-						<h4>{lote.tamanho}m<sup>2</sup></h4>
-						<h4>R$ {lote.valor}</h4>
+						<h4 className='titulo'>{lote.titulo}</h4>
+						<h4 className='endereco'>Endereço:</h4>
+						<p className='endereco'>{lote.rua}, {lote.numero} - {lote.bairro}</p>
+						<p className='endereco'>{lote.cidade}/{lote.estado} {lote.CEP}</p>
+						<p className='endereco'>{lote.complemento}</p>
+						<h4 className='tamanho'>Tamanho:</h4>
+						<p className='tamanho'>{lote.tamanho}m<sup>2</sup></p>
+						<h4 className='valor'>Valor:</h4>
+						<p className='valor'>R$ {lote.valor}</p>
 						{casas.map((casa) => (
-                			<h4>Tem casa? {lote.id === casa.id ? `Sim, ${casa.tamanho}m²` : "Não"}</h4>
+							<div key={casa.id}>
+								<h4 className='temCasa'>Tem casa?</h4>
+								<p className='temCasa'>{lote.id === casa.id ? `Sim, ${casa.tamanho}m²` : "Não"}</p>
+							</div>
             			))}
 					</div>
 					<div className='actionsflex'>

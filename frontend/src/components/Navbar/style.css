@@ -1,5 +1,6 @@
 #navigation {
     background-color: #B5443B;
+    width: 100vmax;
 }
 
 .menu, .login-menu {
@@ -26,15 +27,10 @@
     position: absolute;
     right: 9rem;
     list-style-type: none;
-    height: 45px;
-    width: 90px;
-    border-radius: 20px;
-    padding: 7px;
-    background-color: rgb(133, 49, 43); /* Valor escurecido */
     cursor: pointer;
 }
 
-.login-menu:hover {
+.dropdown:hover {
   border-radius: 30px;
 }
 
@@ -42,6 +38,13 @@
   position: relative;
   color: white;
   cursor: pointer;
+  height: 45px;
+  width: 90px;
+  border-radius: 20px;
+  padding: 7px;
+  background-color: rgb(133, 49, 43);
+  display: flex;
+  justify-content: center;
 }
 
 .dropdown .dropdown-menu {
@@ -67,7 +70,7 @@
  
 .dropdown-menu {
   position: absolute;
-  top: 38px;
+  top: 60px;
   left: -35px;
   background: #E54;
   border: 2px solid #333;
@@ -76,8 +79,13 @@
   width: 150px;
 }
 
-.dropdown h4::after {
+.dropdown h4::before {
   content: "↓";
+}
+
+.dropdown h4 {
+  position: relative;
+  top: .8rem;
 }
 
 .dropdown-menu::before {
