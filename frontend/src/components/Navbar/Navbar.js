@@ -51,7 +51,7 @@ const Navbar = () => {
 				<div className='menu'>
             <h4><a href="/">Início</a></h4>
             <h4><a href="/lotes">Lotes</a></h4>
-            <h4><a href="/casas">Casas</a></h4>
+            <h4><a href="/contato">Contato</a></h4>
             <div className='login-menu'>
                 <h4><a href="/login">Entrar</a></h4>
                 <h4><a href="/signup">Cadastrar</a></h4>
@@ -63,7 +63,7 @@ const Navbar = () => {
 				<div className='menu'>
             <h4><a href="/">Início</a></h4>
             <h4><a href="/lotes">Lotes</a></h4>
-            <h4><a href="/casas">Casas</a></h4>
+            <h4><a href="/contato">Contato</a></h4>
             <div className='login-menu'>
                 <li className="dropdown">
                     <h4 onClick={() => initDropDownMenu()}>Olá, {user}</h4>
