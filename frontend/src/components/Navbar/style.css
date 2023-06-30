@@ -107,3 +107,28 @@
   padding: 10px;
   font-weight: bold;
 }
+
+@media only screen and (max-width: 600px) {
+  .dropdown {
+    height: 45%;
+    width: 90%;
+    padding: 5px;
+  }
+
+  .login-menu {
+    right: 0rem;
+  }
+
+  .menu, .login-menu {
+    gap: .8rem;
+    font-size: small;
+  }
+
+  .menu a {
+    left: 1rem;
+  }
+
+  .dropdown h4 {
+    top: .5rem;
+  }
+}
