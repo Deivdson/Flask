@@ -5,15 +5,19 @@
     left: 2rem;
 }
 
+.loteForm {
+    position: absolute;
+    left: 27%;
+}
+
 .casaForm {
-    position: relative;
-    top: -600px;
+    position: absolute;
+    left: 55%;
 }
 
 .loteForm h1 {
     position: relative;
     top: -60px;
-    left: -200px;
 }
 
 .casaForm h1 {
@@ -54,23 +58,6 @@
     font-size: 15px;
 }
 
-.form-grid-1 {
-    position: relative;
-    left: -25rem;
-    z-index: 1;
-}
-
-.form-grid-2 {
-    position: relative;
-    top: -32.2rem;
-}
-
-.form-grid-3 {
-    position: relative;
-    top: -38.2rem;
-    left: 25rem;
-}
-
 .boxflex {
     display: flex;
     flex-direction: row;
@@ -104,11 +91,6 @@
     background-color: rgb(133, 49, 43);
 }
 
-.btnLote {
-    position: relative;
-    top: -30rem;
-    left: -12.5rem;
-}
 
 .titulo {
     font-size: 1.7rem;

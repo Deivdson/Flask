@@ -176,7 +176,6 @@ const PostLote = () => {
             <div className='signup'>
                 <form id="addForm" className="loteForm" onSubmit={loteSubmit} >
                     <h1>Adicionar lote</h1>
-                    <div className='form-grid-1'>
                         <label htmlFor="titulo">Titulo</label>
                         <br />
                         <input type="text" name="titulo" id="titulo" placeholder="Insira um titulo para o lote" title="Insira um titulo para o lote" value={titulo} onChange={handleTitulo} required/>
@@ -192,6 +191,7 @@ const PostLote = () => {
                         <input type="text" name="tamanho" placeholder="Insira o tamanho do lote" title="Insira o tamanho do lote" value={tamanhoLote} onChange={handleTamanhoLote} required/>
                         <br />
                         <br />
+                        <div className='cepPosi'>
                         <label htmlFor="cep">CEP</label>
                         <br />
                         <input type="text" name="cep" id="cep" placeholder="Insira o CEP do lote" title="Insira o CEP do lote" value={cep} onChange={handleCEP} onBlur={buscaCEP} required/>
@@ -202,8 +202,6 @@ const PostLote = () => {
                         <input type="text" name="rua" id="rua" placeholder="Insira o rua do lote" title="Insira o rua do lote" value={rua} onChange={handleRua} required/>
                         <br />
                         <br />
-                    </div>
-                    <div className='form-grid-2'>
                         <label htmlFor="numero">Numero</label>
                         <br />
                         <input type="text" name="numero" id="numero" placeholder="Insira o numero do lote" title="Insira o numero do lote" value={numero} onChange={handleNumero} required/>
@@ -227,13 +225,13 @@ const PostLote = () => {
                         <label htmlFor="complemento">Complemento</label>
                         <br />
                         <input type="text" name="complemento" id="complemento" placeholder="Insira o complemento do lote" title="Insira o complemento do lote" value={complemento} onChange={handleComplemento}/>
+                        </div>
+                        
                         <br />
                         <br />
-                    </div>
                     <button className='btnLote' type="submit">Adicionar lote</button>
                 </form>
                 <form className="casaForm" onSubmit={casaSubmit}>
-                    <div className='form-grid-3'>
                         <h1>Adicionar casa</h1>
                         <label htmlFor="tamanho">Tamanho</label>
                         <br />
@@ -241,7 +239,6 @@ const PostLote = () => {
                         <br />
                         <br />
                         <button type="submit">Adicionar Casa</button>
-                    </div>
                 </form>
             </div>
 		</div>
